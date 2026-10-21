@@ -29,7 +29,7 @@
         }
     </script>
     <style>
-        /* Navbar Superior Fija Estilizada */
+        /* Navbar Superior Fija Estilizada Optimizada para Móvil */
         .glass-nav {
             background: rgba(9, 11, 16, 0.95);
             backdrop-filter: blur(16px);
@@ -57,11 +57,17 @@
             transform: translateY(-3px);
         }
 
-        /* Esquinas redondeadas y difuminado suave perimetral para unir perfectamente al fondo */
+        /* Esquinas redondeadas y difuminado suave perimetral */
         .video-rounded-fade {
-            border-radius: 1.5rem;
+            border-radius: 1rem;
             -webkit-mask-image: radial-gradient(circle at 50% 50%, black 50%, rgba(0,0,0,0.7) 75%, transparent 100%);
             mask-image: radial-gradient(circle at 50% 50%, black 50%, rgba(0,0,0,0.7) 75%, transparent 100%);
+        }
+
+        @media (min-width: 768px) {
+            .video-rounded-fade {
+                border-radius: 1.5rem;
+            }
         }
 
         /* Contenedor de imagen de producto en catálogo */
@@ -188,16 +194,16 @@
     <video id="vid3" class="hidden-source-video" src="seccion 3.mp4" autoplay muted loop playsinline></video>
     <video id="vid5" class="hidden-source-video" src="seccion 5.mp4" autoplay muted loop playsinline></video>
 
-    <!-- BARRA DE NAVEGACIÓN FIJA RESPONSIVA -->
+    <!-- BARRA DE NAVEGACIÓN FIJA RESPONSIVA PERFECTA -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-nav">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
             <!-- Marca izquierda -->
             <a href="#inicio" class="flex items-center gap-2">
-                <span class="font-display font-extrabold text-base sm:text-xl tracking-wider text-white">NAUTIKA <span class="text-cyan-400 font-light text-[10px] sm:text-xs block sm:inline">MARINE LED</span></span>
+                <span class="font-display font-extrabold text-sm sm:text-xl tracking-wider text-white">NAUTIKA <span class="text-cyan-400 font-light text-[9px] sm:text-xs block sm:inline">MARINE LED</span></span>
             </a>
 
-            <!-- Accesos directos escritorio -->
-            <nav class="hidden lg:flex items-center gap-7 font-display text-xs font-semibold tracking-[0.2em] uppercase text-slate-300">
+            <!-- Accesos directos escritorio y tablets -->
+            <nav class="hidden md:flex items-center gap-6 lg:gap-8 font-display text-xs font-semibold tracking-[0.15em] uppercase text-slate-300">
                 <a href="#inicio" class="text-white hover:text-cyan-400 transition">Inicio</a>
                 <a href="#nosotros" class="hover:text-cyan-400 transition">Nosotros</a>
                 <a href="#lampara" class="hover:text-cyan-400 transition">Lampara</a>
@@ -206,40 +212,40 @@
             </nav>
 
             <!-- Solicitar cotización + Logo miniatura derecho -->
-            <div class="flex items-center gap-3">
-                <a href="mailto:contacto@nautika.com" class="px-4 sm:px-5 py-2 rounded-full border border-cyan-500/30 text-white font-display text-[10px] sm:text-xs font-semibold tracking-[0.1em] uppercase hover:bg-cyan-400 hover:text-black hover:border-cyan-400 transition duration-300">
+            <div class="flex items-center gap-2.5 sm:gap-4">
+                <a href="mailto:contacto@nautika.com" class="px-3.5 sm:px-5 py-2 rounded-full border border-cyan-500/30 text-white font-display text-[10px] sm:text-xs font-semibold tracking-[0.1em] uppercase hover:bg-cyan-400 hover:text-black hover:border-cyan-400 transition duration-300">
                     Cotización
                 </a>
-                <img src="logo nautika.png" alt="NAUTIKA Logo" class="h-7 sm:h-9 w-auto object-contain">
+                <img src="logo nautika.png" alt="NAUTIKA Logo" class="h-6 sm:h-9 w-auto object-contain">
             </div>
         </div>
-        <!-- Menú inferior móvil para acceso rápido -->
-        <div class="flex lg:hidden items-center justify-around bg-black/90 py-2 border-t border-white/10 text-[10px] font-display font-semibold tracking-widest uppercase text-slate-300">
-            <a href="#inicio" class="hover:text-cyan-400">Inicio</a>
-            <a href="#nosotros" class="hover:text-cyan-400">Nosotros</a>
-            <a href="#lampara" class="hover:text-cyan-400">Lampara</a>
-            <a href="#productos" class="hover:text-cyan-400">Productos</a>
-            <a href="#contacto" class="hover:text-cyan-400">Contacto</a>
+        <!-- Menú inferior móvil optimizado -->
+        <div class="flex md:hidden items-center justify-around bg-black/95 py-1.5 border-t border-white/10 text-[9px] font-display font-semibold tracking-wider uppercase text-slate-300">
+            <a href="#inicio" class="hover:text-cyan-400 py-1 px-2">Inicio</a>
+            <a href="#nosotros" class="hover:text-cyan-400 py-1 px-2">Nosotros</a>
+            <a href="#lampara" class="hover:text-cyan-400 py-1 px-2">Lampara</a>
+            <a href="#productos" class="hover:text-cyan-400 py-1 px-2">Productos</a>
+            <a href="#contacto" class="hover:text-cyan-400 py-1 px-2">Contacto</a>
         </div>
     </header>
 
     <!-- =========================================================================
-         SECCIÓN 1: INICIO (Con esquinas redondeadas y difuminado restaurados)
+         SECCIÓN 1: INICIO (Adaptada para celulares y pantallas grandes sin superposiciones)
          ========================================================================= -->
-    <section id="inicio" class="relative min-h-screen flex items-center justify-center textured-dark textured-fade-y pt-32 pb-16 px-4 sm:px-6">
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center textured-dark textured-fade-y pt-32 sm:pt-36 pb-16 px-4 sm:px-6">
         <div class="max-w-7xl mx-auto w-full relative z-20 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            <!-- Columna Izquierda: Título y accesos -->
+            <!-- Columna Izquierda: Título Principal y Accesos Rápidos -->
             <div class="lg:col-span-5 text-center lg:text-left">
                 <div class="inline-flex items-center gap-2 py-1 px-3 sm:px-4 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-[10px] sm:text-[11px] font-display font-semibold tracking-[0.2em] uppercase mb-4 sm:mb-6">
                     Empresa 100% Mexicana • Calidad Internacional
                 </div>
                 <h1 class="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-none mb-4 sm:mb-6">
-                    NAUTIKA <span class="block font-light text-cyan-400 mt-2 text-2xl sm:text-4xl lg:text-5xl">MARINE LED LIGHTING</span>
+                    NAUTIKA <span class="block font-light text-cyan-400 mt-2 text-xl sm:text-3xl lg:text-5xl">MARINE LED LIGHTING</span>
                 </h1>
                 <p class="text-slate-300 text-sm sm:text-base font-light leading-relaxed mb-6 sm:mb-8 max-w-xl mx-auto lg:mx-0">
                     Diseñamos y fabricamos iluminación subacuática con diseños minimalistas, materiales de calidad premium y tecnología LED de vanguardia para transformar tu alberca en el centro de atención.
                 </p>
-                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4">
                     <a href="mailto:contacto@nautika.com" class="w-full sm:w-auto px-8 py-3.5 bg-cyan-400 text-black font-display text-xs font-bold tracking-[0.2em] uppercase hover:bg-white transition duration-300 shadow-2xl text-center">
                         Solicitar Cotización
                     </a>
@@ -249,10 +255,10 @@
                 </div>
             </div>
 
-            <!-- Columna Derecha: Video Animado con esquinas redondeadas y difuminado -->
-            <div class="lg:col-span-7 flex justify-center mt-6 lg:mt-0">
-                <div class="relative w-full max-w-5xl p-0 flex items-center justify-center overflow-hidden aspect-[16/9]">
-                    <canvas id="canvasHero" class="w-full h-full object-contain pointer-events-none video-rounded-fade drop-shadow-[0_30px_60px_rgba(0,242,254,0.4)]"></canvas>
+            <!-- Columna Derecha: Video Animado responsivo -->
+            <div class="lg:col-span-7 flex justify-center mt-4 lg:mt-0">
+                <div class="relative w-full max-w-4xl p-0 flex items-center justify-center overflow-hidden aspect-[16/10] sm:aspect-[16/9]">
+                    <canvas id="canvasHero" class="w-full h-full object-contain pointer-events-none video-rounded-fade drop-shadow-[0_25px_50px_rgba(0,242,254,0.35)]"></canvas>
                 </div>
             </div>
         </div>
