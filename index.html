@@ -16,7 +16,7 @@
             background-color: #030712;
         }
 
-        /* Bloquear por completo controles flotantes, iconos multimedia y overlays del navegador en los videos */
+        /* Bloquear controles flotantes y multimedia en videos */
         video {
             pointer-events: none !important;
         }
@@ -44,6 +44,15 @@
             object-fit: cover;
             z-index: 0;
             pointer-events: none !important;
+        }
+
+        /* Ajuste específico para que el video chico en laptop cubra bien el espacio proporcionalmente */
+        @media (min-width: 768px) {
+            .video-inicio-ajuste {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+            }
         }
 
         /* Animación de parpadeo profesional (glow/blink) para el texto central */
@@ -176,9 +185,10 @@
     </a>
 
 
-    <!-- SECCIÓN 1: INICIO (VIDEO DINÁMICO) -->
+    <!-- SECCIÓN 1: INICIO (VIDEO FIJO SECCION 1 CHICO.MP4 PARA AMBAS VISTAS) -->
     <section id="inicio" class="relative w-full h-screen flex flex-col justify-between overflow-hidden pt-28">
-        <video id="video-inicio" autoplay muted loop playsinline disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" class="bg-video">
+        <video autoplay muted loop playsinline disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" class="bg-video video-inicio-ajuste">
+            <source src="seccion 1 chico.mp4" type="video/mp4">
             Tu navegador no soporta video en HTML5.
         </video>
         <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-black/40 to-[#030712]/80 z-10 pointer-events-none"></div>
@@ -207,7 +217,7 @@
         <video id="video-fabricantes" autoplay muted loop playsinline disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" class="bg-video">
             Tu navegador no soporta video en HTML5.
         </video>
-        <!-- Difuminado superior e inferior para conectar fluidamente con la sección anterior y posterior -->
+        <!-- Difuminado superior e inferior para conectar fluidamente -->
         <div class="absolute inset-0 bg-gradient-to-b from-[#030712] via-transparent to-[#030712] z-10 pointer-events-none"></div>
     </section>
 
