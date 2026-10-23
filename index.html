@@ -16,6 +16,36 @@
             background-color: #030712;
         }
 
+        /* Bloquear por completo controles flotantes, iconos multimedia y overlays del navegador en los videos */
+        video {
+            pointer-events: none !important;
+        }
+        video::-webkit-media-controls,
+        video::-webkit-media-controls-enclosure,
+        video::-webkit-media-controls-panel,
+        video::-webkit-media-controls-overlay-enclosure,
+        video::-webkit-media-controls-play-button,
+        video::-webkit-media-controls-start-playback-button {
+            display: none !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
+        /* Ajuste perfecto y limpio para los videos de fondo a pantalla completa sin zoom */
+        .bg-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+            z-index: 0;
+            pointer-events: none !important;
+        }
+
         /* Animación de parpadeo profesional (glow/blink) para el texto central */
         @keyframes parpadeo {
             0%, 100% {
@@ -146,12 +176,12 @@
     </a>
 
 
-    <!-- SECCIÓN 1: INICIO (VIDEO DINÁMICO: seccion 1 chico.mp4 / seccion 1 grande.mp4) -->
+    <!-- SECCIÓN 1: INICIO (VIDEO DINÁMICO) -->
     <section id="inicio" class="relative w-full h-screen flex flex-col justify-between overflow-hidden pt-28">
-        <video id="video-inicio" autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
+        <video id="video-inicio" autoplay muted loop playsinline disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" class="bg-video">
             Tu navegador no soporta video en HTML5.
         </video>
-        <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-black/40 to-[#030712]/80 z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-black/40 to-[#030712]/80 z-10 pointer-events-none"></div>
 
         <div class="relative z-20 mb-20 px-2 sm:px-6 w-full mt-auto">
             <div class="flex items-center justify-between w-full max-w-4xl mx-auto gap-1">
@@ -172,49 +202,22 @@
     </section>
 
 
-    <!-- SECCIÓN 2: SOMOS FABRICANTES -->
-    <section id="fabricantes" class="min-h-screen py-24 px-6 flex flex-col justify-center relative overflow-hidden bg-[#030712]">
-        <div class="max-w-md mx-auto text-center relative z-10">
-            <span class="text-cyan-500 text-xs font-extrabold uppercase tracking-[0.3em]">Excelencia Mexicana</span>
-            <h2 class="text-3xl sm:text-4xl font-black mt-2 mb-6 tracking-tight text-white">Somos Fabricantes</h2>
-            
-            <div class="product-card p-6 mb-6 text-left">
-                <p class="text-slate-300 text-sm leading-relaxed mb-4">
-                    En <strong class="text-cyan-400 font-bold">NAUTIKA</strong> fabricamos lámparas con diseños minimalistas que darán vida a tu alberca. Hacemos que tu alberca sea el centro de atención cuando llega la tarde.
-                </p>
-                <p class="text-slate-300 text-sm leading-relaxed mb-4">
-                    Solo usamos materiales de calidad premium con tecnología de vanguardia, siendo una empresa 100% mexicana con calidad internacional. Colores vibrantes darán nueva vida a tu alberca.
-                </p>
-                <p class="text-slate-300 text-sm leading-relaxed">
-                    Podemos diseñar y fabricar iluminación subacuática bajo proyectos especiales.
-                </p>
-            </div>
-
-            <div class="product-card p-4 text-left space-y-3 mb-8">
-                <div class="flex items-center space-x-3 text-cyan-300 text-xs font-bold">
-                    <span class="w-2 h-2 rounded-full bg-cyan-400"></span><span>Diseños minimalistas y modernos de alta gama</span>
-                </div>
-                <div class="flex items-center space-x-3 text-cyan-300 text-xs font-bold">
-                    <span class="w-2 h-2 rounded-full bg-cyan-400"></span><span>Materiales de calidad marina y componentes premium</span>
-                </div>
-                <div class="flex items-center space-x-3 text-cyan-300 text-xs font-bold">
-                    <span class="w-2 h-2 rounded-full bg-cyan-400"></span><span>Calidad internacional con orgullo 100% mexicano</span>
-                </div>
-            </div>
-
-            <div class="mt-8">
-                <a href="#inicio" class="inline-flex items-center space-x-2 text-xs text-cyan-500 font-bold uppercase tracking-wider hover:text-cyan-400 transition"><span>↑ Volver al inicio</span></a>
-            </div>
-        </div>
+    <!-- SECCIÓN 2: SOMOS FABRICANTES (SOLO VIDEO DE FONDO Y DIFUMINADO SUAVE) -->
+    <section id="fabricantes" class="relative w-full h-screen flex flex-col justify-between overflow-hidden bg-[#030712]">
+        <video id="video-fabricantes" autoplay muted loop playsinline disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" class="bg-video">
+            Tu navegador no soporta video en HTML5.
+        </video>
+        <!-- Difuminado superior e inferior para conectar fluidamente con la sección anterior y posterior -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#030712] via-transparent to-[#030712] z-10 pointer-events-none"></div>
     </section>
 
 
-    <!-- SECCIÓN 3: TECNOLOGÍA Y SELLADO PERMANENTE (VIDEO DE FONDO: chip grande.mp4 / chip chico.mp4) -->
+    <!-- SECCIÓN 3: TECNOLOGÍA Y SELLADO PERMANENTE (VIDEO DINÁMICO) -->
     <section id="tecnologia" class="relative w-full h-screen flex flex-col justify-between overflow-hidden">
-        <video id="video-chip" autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
+        <video id="video-chip" autoplay muted loop playsinline disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" class="bg-video">
             Tu navegador no soporta video en HTML5.
         </video>
-        <div class="absolute inset-0 bg-black/30 z-10"></div>
+        <div class="absolute inset-0 bg-black/30 z-10 pointer-events-none"></div>
     </section>
 
 
@@ -581,7 +584,7 @@
         </div>
     </section>
 
-    <!-- Script JavaScript para detección de pantalla y expansión dinámica -->
+    <!-- Script JavaScript para detección de pantallas y videos dinámicos -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const esChico = window.innerWidth < 768;
@@ -594,7 +597,15 @@
                 videoInicio.load();
             }
 
-            // 2. Asignar video de fondo para la sección de Sellado Permanente
+            // 2. Asignar video de Somos Fabricantes (somos fabricantes chico.mp4 / somos fabricantes grande.mp4)
+            const videoFabricantes = document.getElementById("video-fabricantes");
+            if (videoFabricantes) {
+                const nombreVideoFab = esChico ? "somos fabricantes chico.mp4" : "somos fabricantes grande.mp4";
+                videoFabricantes.innerHTML = `<source src="${nombreVideoFab}" type="video/mp4">Tu navegador no soporta video en HTML5.`;
+                videoFabricantes.load();
+            }
+
+            // 3. Asignar video de Sellado Permanente
             const videoChip = document.getElementById("video-chip");
             if (videoChip) {
                 const nombreVideoChip = esChico ? "chip chico.mp4" : "chip grande.mp4";
