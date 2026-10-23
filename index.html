@@ -66,6 +66,7 @@
             border: 1px solid rgba(34, 211, 238, 0.25);
             border-radius: 28px;
             box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85);
+            transition: all 0.4s ease-in-out;
         }
         .product-image-container {
             background: radial-gradient(circle, #090e1a 0%, #030712 100%);
@@ -195,7 +196,7 @@
     </section>
 
 
-    <!-- SECCIÓN 3: TECNOLOGÍA Y SELLADO PERMANENTE (VIDEO DE FONDO: chip grande.mp4 / chip chico.mp4) -->
+    <!-- SECCIÓN 3: TECNOLOGÍA Y SELLADO PERMANENTE -->
     <section id="tecnologia" class="relative w-full h-screen flex flex-col justify-between overflow-hidden">
         <video id="video-chip" autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
             Tu navegador no soporta video en HTML5.
@@ -204,9 +205,9 @@
     </section>
 
 
-    <!-- SECCIÓN 4: PRODUCTOS -->
+    <!-- SECCIÓN 4: PRODUCTOS (CENTRADO POR DEFECTO, SE RECORRE AL ABRIR FICHA TÉCNICA) -->
     <section id="productos" class="min-h-screen py-24 px-4 sm:px-6 flex flex-col justify-center relative overflow-hidden bg-[#030712]">
-        <div class="max-w-2xl mx-auto text-center w-full relative z-10 space-y-16">
+        <div class="max-w-7xl mx-auto text-center w-full relative z-10 space-y-16">
             
             <div>
                 <span class="text-cyan-500 text-xs font-extrabold uppercase tracking-[0.3em]">Gama Exclusiva</span>
@@ -214,316 +215,353 @@
             </div>
 
             <!-- PRODUCTO 1: MODELO KRP-50 (DIMEABLE) -->
-            <div class="product-card p-5 sm:p-8 text-left space-y-6">
-                <!-- Header con responsive: Laptop = Derecha / Celular = Abajo -->
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 border-b border-cyan-500/20 pb-4">
-                    <h3 class="text-lg sm:text-xl font-black text-cyan-400 tracking-wider">MODELO KRP-50 <span class="text-white text-sm font-bold">(DIMEABLE)</span></h3>
-                    <div class="flex items-center justify-between sm:justify-end gap-2">
-                        <span class="text-[10px] bg-transparent text-cyan-500 font-bold px-3 py-1 rounded-full border border-cyan-800 uppercase tracking-widest">Nicho Grande</span>
-                        <button onclick="toggleFicha('ficha-krp50', this)" class="bg-[#070b16] border border-slate-700 hover:border-cyan-500/50 text-cyan-400 font-bold px-4 py-2 rounded-xl text-xs transition duration-300 tracking-wider">
+            <div id="wrapper-krp50" class="max-w-xl mx-auto transition-all duration-500">
+                <div class="product-card p-5 sm:p-8 text-left space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 border-b border-cyan-500/20 pb-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+                            <h3 class="text-lg sm:text-xl font-black text-cyan-400 tracking-wider">MODELO KRP-50 <span class="text-white text-sm font-bold">(DIMEABLE)</span></h3>
+                            <span class="text-[10px] bg-transparent text-cyan-500 font-bold px-3 py-1 rounded-full border border-cyan-800 uppercase tracking-widest w-fit">Nicho Grande</span>
+                        </div>
+                        <button onclick="toggleFichaDinamica('krp50', this)" class="bg-[#070b16] border border-cyan-500/40 hover:border-cyan-500 text-cyan-400 font-bold px-4 py-2 rounded-xl text-xs transition duration-300 tracking-wider w-full sm:w-auto shadow-lg">
                             ▼ VER FICHA TÉCNICA
                         </button>
                     </div>
-                </div>
 
-                <div class="product-image-container p-6 flex items-center justify-center">
-                    <img src="Fondo de krp-50 eliminado.png" alt="Modelo KRP-50" class="w-full h-56 sm:h-64 object-contain">
-                </div>
+                    <!-- Contenedor interno que cambia a 2 columnas al activarse la ficha técnica -->
+                    <div id="container-krp50" class="grid grid-cols-1 gap-6 items-start">
+                        <!-- Columna Principal de la Lámpara -->
+                        <div class="space-y-6">
+                            <div class="product-image-container p-6 flex items-center justify-center">
+                                <img src="Fondo de krp-50 eliminado.png" alt="Modelo KRP-50" class="w-full h-72 sm:h-96 object-contain filter drop-shadow-[0_10px_20px_rgba(34,211,238,0.2)]">
+                            </div>
 
-                <div class="specs-container p-4 space-y-4">
-                    <div class="flex flex-wrap items-center justify-center gap-3">
-                        <span class="inline-flex items-center space-x-2 border border-cyan-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
-                            <span class="w-3 h-3 rounded-full bg-white inline-block"></span><span>Blanco 6500K</span>
-                        </span>
-                        <span class="inline-flex items-center space-x-2 border border-blue-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
-                            <span class="w-3 h-3 rounded-full bg-blue-600 inline-block"></span><span>Royal Blue</span>
-                        </span>
-                        <span class="inline-flex items-center space-x-2 border border-purple-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
-                            <span class="w-3 h-3 rounded-full bg-gradient-to-r from-red-500 via-green-500 to-blue-500 inline-block"></span><span>RGB Multi</span>
-                        </span>
+                            <div class="specs-container p-4 space-y-4">
+                                <div class="flex flex-wrap items-center justify-center gap-3">
+                                    <span class="inline-flex items-center space-x-2 border border-cyan-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
+                                        <span class="w-3 h-3 rounded-full bg-white inline-block"></span><span>Blanco 6500K</span>
+                                    </span>
+                                    <span class="inline-flex items-center space-x-2 border border-blue-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
+                                        <span class="w-3 h-3 rounded-full bg-blue-600 inline-block"></span><span>Royal Blue</span>
+                                    </span>
+                                    <span class="inline-flex items-center space-x-2 border border-purple-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
+                                        <span class="w-3 h-3 rounded-full bg-gradient-to-r from-red-500 via-green-500 to-blue-500 inline-block"></span><span>RGB Multi</span>
+                                    </span>
+                                </div>
+                                <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-white">
+                                    <div class="spec-box"><span class="font-black text-xs tracking-wider">CREE®</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">LEDS</span></div>
+                                    <div class="spec-box"><span class="font-black text-xs tracking-wider">IP-68</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">ESTANQUEIDAD</span></div>
+                                    <div class="spec-box"><span class="font-black text-xs tracking-wider">50,000</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">HR VIDA ÚTIL</span></div>
+                                    <div class="spec-box"><span class="font-black text-[10px] tracking-wider uppercase">RGB / MONO</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">CONTROL COLOR</span></div>
+                                    <div class="spec-box col-span-2 sm:col-span-1"><span class="font-black text-[10px] tracking-wider uppercase">HECHO EN</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">MÉXICO</span></div>
+                                </div>
+                            </div>
+
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                Este modelo de lámpara LED fue diseñada para usarse como sustituto o repuesto de las lámparas tradicionales de halogeno de la marca pentair de nicho grande, se adapta en 5 minutos migrando a tecnología LED con el 90% de ahorro energético y colores mucho más vibrantes. No requiere ninguna modificación en su alberca, utilizamos el mismo sistema de fijación de su sistema actual.
+                            </p>
+
+                            <a href="https://wa.me/5215578935344?text=Hola,%20me%20interesa%20solicitar%20cotizaci%C3%B3n%20del%20modelo%20KRP-50" target="_blank" class="block w-full bg-gradient-to-r from-cyan-500 to-teal-400 text-[#030712] font-black py-4 rounded-xl text-xs text-center tracking-widest uppercase hover:brightness-110 transition shadow-[0_0_20px_rgba(34,211,238,0.3)]">
+                                SOLICITAR COTIZACIÓN KRP-50 ↗
+                            </a>
+                        </div>
+
+                        <!-- Columna de la Ficha Técnica (Aparece a un costado en Laptop al hacer clic) -->
+                        <div id="ficha-krp50" class="hidden specs-container p-6 space-y-2 border border-cyan-500/40 text-left">
+                            <h4 class="text-cyan-400 font-black text-sm uppercase tracking-widest mb-3 pb-2 border-b border-cyan-500/30">Ficha Técnica Oficial</h4>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Tipo de fijación</span><span class="font-bold text-white text-right">Montaje en arillo de pentair</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Consumo energético</span><span class="font-bold text-white text-right">50 W</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Alimentación eléctrica</span><span class="font-bold text-white text-right">12 V DC (Corriente Directa)</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Módulo LED</span><span class="font-bold text-white text-right">XT-SPECTRUM de alta eficiencia</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Área de lente</span><span class="font-bold text-white text-right">100 mm</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Dimeabilidad</span><span class="font-bold text-white text-right">Atenuable de 10% a 100%</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Diámetro exterior</span><span class="font-bold text-white text-right">20 cm</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Cuerpo de la lámpara</span><span class="font-bold text-white text-right">Acero inoxidable de calidad marina</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Cable sumergible</span><span class="font-bold text-white text-right">100% cobre libre de oxígeno, 4 m de neopreno</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Lente difusor</span><span class="font-bold text-white text-right">Policarbonato óptico de alto impacto con protección UV y anti-sarro</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Garantía</span><span class="font-bold text-white text-right">3 años contra defectos de fabricación</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Resistencia</span><span class="font-bold text-white text-right">Soporta hasta 40 m de profundidad (Grado IP68 / IP69)</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Conectividad</span><span class="font-bold text-white text-right">100% compatible con Wi-Fi, Tuya, Smart Life, Alexa, Google Home, Zigbee y audiorítmicos</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Ángulo de apertura</span><span class="font-bold text-white text-right">160° de cobertura fotométrica homogénea</span></div>
+                        </div>
                     </div>
-                    <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-white">
-                        <div class="spec-box"><span class="font-black text-xs tracking-wider">CREE®</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">LEDS</span></div>
-                        <div class="spec-box"><span class="font-black text-xs tracking-wider">IP-68</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">ESTANQUEIDAD</span></div>
-                        <div class="spec-box"><span class="font-black text-xs tracking-wider">50,000</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">HR VIDA ÚTIL</span></div>
-                        <div class="spec-box"><span class="font-black text-[10px] tracking-wider uppercase">RGB / MONO</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">CONTROL COLOR</span></div>
-                        <div class="spec-box col-span-2 sm:col-span-1"><span class="font-black text-[10px] tracking-wider uppercase">HECHO EN</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">MÉXICO</span></div>
-                    </div>
                 </div>
-
-                <p class="text-sm text-slate-400 leading-relaxed">
-                    Este modelo de lámpara LED fue diseñada para usarse como sustituto o repuesto de las lámparas tradicionales de halogeno de la marca pentair de nicho grande, se adapta en 5 minutos migrando a tecnología LED con el 90% de ahorro energético y colores mucho más vibrantes. No requiere ninguna modificación en su alberca, utilizamos el mismo sistema de fijación de su sistema actual.
-                </p>
-
-                <div id="ficha-krp50" class="hidden specs-container p-4 space-y-1">
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Tipo de fijación</span><span class="font-bold text-white text-right">Montaje en arillo de pentair</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Consumo energético</span><span class="font-bold text-white text-right">50 W</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Alimentación eléctrica</span><span class="font-bold text-white text-right">12 V DC (Corriente Directa)</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Módulo LED</span><span class="font-bold text-white text-right">XT-SPECTRUM de alta eficiencia</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Área de lente</span><span class="font-bold text-white text-right">100 mm</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Dimeabilidad</span><span class="font-bold text-white text-right">Atenuable de 10% a 100%</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Diámetro exterior</span><span class="font-bold text-white text-right">20 cm</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Cuerpo de la lámpara</span><span class="font-bold text-white text-right">Acero inoxidable de calidad marina</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Cable sumergible</span><span class="font-bold text-white text-right">100% cobre libre de oxígeno, 4 m de neopreno</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Lente difusor</span><span class="font-bold text-white text-right">Policarbonato óptico de alto impacto con protección UV y anti-sarro</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Garantía</span><span class="font-bold text-white text-right">3 años contra defectos de fabricación</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Resistencia</span><span class="font-bold text-white text-right">Soporta hasta 40 m de profundidad (Grado IP68 / IP69)</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Conectividad</span><span class="font-bold text-white text-right">100% compatible con Wi-Fi, Tuya, Smart Life, Alexa, Google Home, Zigbee y audiorítmicos</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Ángulo de apertura</span><span class="font-bold text-white text-right">160° de cobertura fotométrica homogénea</span></div>
-                </div>
-
-                <a href="https://wa.me/5215578935344?text=Hola,%20me%20interesa%20solicitar%20cotizaci%C3%B3n%20del%20modelo%20KRP-50" target="_blank" class="block w-full bg-gradient-to-r from-cyan-500 to-teal-400 text-[#030712] font-black py-4 rounded-xl text-xs text-center tracking-widest uppercase hover:brightness-110 transition shadow-[0_0_20px_rgba(34,211,238,0.3)]">
-                    SOLICITAR COTIZACIÓN KRP-50 ↗
-                </a>
             </div>
 
             <!-- PRODUCTO 2: MODELO KRP-35 (DIMEABLE) -->
-            <div class="product-card p-5 sm:p-8 text-left space-y-6">
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 border-b border-cyan-500/20 pb-4">
-                    <h3 class="text-lg sm:text-xl font-black text-cyan-400 tracking-wider">MODELO KRP-35 <span class="text-white text-sm font-bold">(DIMEABLE)</span></h3>
-                    <div class="flex items-center justify-between sm:justify-end gap-2">
-                        <span class="text-[10px] bg-transparent text-cyan-500 font-bold px-3 py-1 rounded-full border border-cyan-800 uppercase tracking-widest">Nicho Chico</span>
-                        <button onclick="toggleFicha('ficha-krp35', this)" class="bg-[#070b16] border border-slate-700 hover:border-cyan-500/50 text-cyan-400 font-bold px-4 py-2 rounded-xl text-xs transition duration-300 tracking-wider">
+            <div id="wrapper-krp35" class="max-w-xl mx-auto transition-all duration-500">
+                <div class="product-card p-5 sm:p-8 text-left space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 border-b border-cyan-500/20 pb-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+                            <h3 class="text-lg sm:text-xl font-black text-cyan-400 tracking-wider">MODELO KRP-35 <span class="text-white text-sm font-bold">(DIMEABLE)</span></h3>
+                            <span class="text-[10px] bg-transparent text-cyan-500 font-bold px-3 py-1 rounded-full border border-cyan-800 uppercase tracking-widest w-fit">Nicho Chico</span>
+                        </div>
+                        <button onclick="toggleFichaDinamica('krp35', this)" class="bg-[#070b16] border border-cyan-500/40 hover:border-cyan-500 text-cyan-400 font-bold px-4 py-2 rounded-xl text-xs transition duration-300 tracking-wider w-full sm:w-auto shadow-lg">
                             ▼ VER FICHA TÉCNICA
                         </button>
                     </div>
-                </div>
 
-                <div class="product-image-container p-6 flex items-center justify-center">
-                    <img src="Fondo de krp-35 eliminado.png" alt="Modelo KRP-35" class="w-full h-56 sm:h-64 object-contain">
-                </div>
+                    <div id="container-krp35" class="grid grid-cols-1 gap-6 items-start">
+                        <div class="space-y-6">
+                            <div class="product-image-container p-6 flex items-center justify-center">
+                                <img src="Fondo de krp-35 eliminado.png" alt="Modelo KRP-35" class="w-full h-72 sm:h-96 object-contain filter drop-shadow-[0_10px_20px_rgba(34,211,238,0.2)]">
+                            </div>
 
-                <div class="specs-container p-4 space-y-4">
-                    <div class="flex flex-wrap items-center justify-center gap-3">
-                        <span class="inline-flex items-center space-x-2 border border-cyan-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
-                            <span class="w-3 h-3 rounded-full bg-white inline-block"></span><span>Blanco 6500K</span>
-                        </span>
-                        <span class="inline-flex items-center space-x-2 border border-blue-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
-                            <span class="w-3 h-3 rounded-full bg-blue-600 inline-block"></span><span>Royal Blue</span>
-                        </span>
-                        <span class="inline-flex items-center space-x-2 border border-purple-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
-                            <span class="w-3 h-3 rounded-full bg-gradient-to-r from-red-500 via-green-500 to-blue-500 inline-block"></span><span>RGB Multi</span>
-                        </span>
+                            <div class="specs-container p-4 space-y-4">
+                                <div class="flex flex-wrap items-center justify-center gap-3">
+                                    <span class="inline-flex items-center space-x-2 border border-cyan-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
+                                        <span class="w-3 h-3 rounded-full bg-white inline-block"></span><span>Blanco 6500K</span>
+                                    </span>
+                                    <span class="inline-flex items-center space-x-2 border border-blue-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
+                                        <span class="w-3 h-3 rounded-full bg-blue-600 inline-block"></span><span>Royal Blue</span>
+                                    </span>
+                                    <span class="inline-flex items-center space-x-2 border border-purple-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
+                                        <span class="w-3 h-3 rounded-full bg-gradient-to-r from-red-500 via-green-500 to-blue-500 inline-block"></span><span>RGB Multi</span>
+                                    </span>
+                                </div>
+                                <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-white">
+                                    <div class="spec-box"><span class="font-black text-xs tracking-wider">CREE®</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">LEDS</span></div>
+                                    <div class="spec-box"><span class="font-black text-xs tracking-wider">IP-68</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">ESTANQUEIDAD</span></div>
+                                    <div class="spec-box"><span class="font-black text-xs tracking-wider">50,000</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">HR VIDA ÚTIL</span></div>
+                                    <div class="spec-box"><span class="font-black text-[10px] tracking-wider uppercase">RGB / MONO</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">CONTROL COLOR</span></div>
+                                    <div class="spec-box col-span-2 sm:col-span-1"><span class="font-black text-[10px] tracking-wider uppercase">HECHO EN</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">MÉXICO</span></div>
+                                </div>
+                            </div>
+
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                Este modelo de lámpara LED fue diseñada para usarse como sustituto o repuesto de las lámparas tradicionales de halogeno de la marca pentair de NICHO CHICO se adapta en 5 minutos migrando a tecnología LED, con el 90 % de ahorro energético. No se requiere ninguna modificación en su alberca, utilizamos el mismo sistema de fijación.
+                            </p>
+
+                            <a href="https://wa.me/5215578935344?text=Hola,%20me%20interesa%20solicitar%20cotizaci%C3%B3n%20del%20modelo%20KRP-35" target="_blank" class="block w-full bg-gradient-to-r from-cyan-500 to-teal-400 text-[#030712] font-black py-4 rounded-xl text-xs text-center tracking-widest uppercase hover:brightness-110 transition shadow-[0_0_20px_rgba(34,211,238,0.3)]">
+                                SOLICITAR COTIZACIÓN KRP-35 ↗
+                            </a>
+                        </div>
+
+                        <div id="ficha-krp35" class="hidden specs-container p-6 space-y-2 border border-cyan-500/40 text-left">
+                            <h4 class="text-cyan-400 font-black text-sm uppercase tracking-widest mb-3 pb-2 border-b border-cyan-500/30">Ficha Técnica Oficial</h4>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Tipo de fijación</span><span class="font-bold text-white text-right">Montaje en arillo de pentair</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Consumo energético</span><span class="font-bold text-white text-right">35W</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Alimentación eléctrica</span><span class="font-bold text-white text-right">12 V DC (Corriente Directa)</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Módulo LED</span><span class="font-bold text-white text-right">XT-SPECTRUM de alta eficiencia</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Área de lente</span><span class="font-bold text-white text-right">50 mm</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Dimeabilidad</span><span class="font-bold text-white text-right">Atenuable de 10% a 100%</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Diámetro exterior</span><span class="font-bold text-white text-right">11 cm</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Cuerpo de la lámpara</span><span class="font-bold text-white text-right">Acero inoxidable de calidad marina</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Cable sumergible</span><span class="font-bold text-white text-right">100% cobre libre de oxígeno, 4 m de neopreno</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Lente difusor</span><span class="font-bold text-white text-right">Policarbonato óptico de alto impacto con protección UV y anti-sarro</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Garantía</span><span class="font-bold text-white text-right">3 años contra defectos de fabricación</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Resistencia</span><span class="font-bold text-white text-right">Soporta hasta 40 m de profundidad (Grado IP68 / IP69)</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Conectividad</span><span class="font-bold text-white text-right">100% compatible con Wi-Fi, Tuya, Smart Life, Alexa, Google Home, Zigbee y audiorítmicos</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Ángulo de apertura</span><span class="font-bold text-white text-right">160° de cobertura fotométrica homogénea</span></div>
+                        </div>
                     </div>
-                    <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-white">
-                        <div class="spec-box"><span class="font-black text-xs tracking-wider">CREE®</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">LEDS</span></div>
-                        <div class="spec-box"><span class="font-black text-xs tracking-wider">IP-68</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">ESTANQUEIDAD</span></div>
-                        <div class="spec-box"><span class="font-black text-xs tracking-wider">50,000</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">HR VIDA ÚTIL</span></div>
-                        <div class="spec-box"><span class="font-black text-[10px] tracking-wider uppercase">RGB / MONO</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">CONTROL COLOR</span></div>
-                        <div class="spec-box col-span-2 sm:col-span-1"><span class="font-black text-[10px] tracking-wider uppercase">HECHO EN</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">MÉXICO</span></div>
-                    </div>
                 </div>
-
-                <p class="text-sm text-slate-400 leading-relaxed">
-                    Este modelo de lámpara LED fue diseñada para usarse como sustituto o repuesto de las lámparas tradicionales de halogeno de la marca pentair de NICHO CHICO se adapta en 5 minutos migrando a tecnología LED, con el 90 % de ahorro energético. No se requiere ninguna modificación en su alberca, utilizamos el mismo sistema de fijación.
-                </p>
-
-                <div id="ficha-krp35" class="hidden specs-container p-4 space-y-1">
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Tipo de fijación</span><span class="font-bold text-white text-right">Montaje en arillo de pentair</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Consumo energético</span><span class="font-bold text-white text-right">35W</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Alimentación eléctrica</span><span class="font-bold text-white text-right">12 V DC (Corriente Directa)</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Módulo LED</span><span class="font-bold text-white text-right">XT-SPECTRUM de alta eficiencia</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Área de lente</span><span class="font-bold text-white text-right">50 mm</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Dimeabilidad</span><span class="font-bold text-white text-right">Atenuable de 10% a 100%</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Diámetro exterior</span><span class="font-bold text-white text-right">11 cm</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Cuerpo de la lámpara</span><span class="font-bold text-white text-right">Acero inoxidable de calidad marina</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Cable sumergible</span><span class="font-bold text-white text-right">100% cobre libre de oxígeno, 4 m de neopreno</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Lente difusor</span><span class="font-bold text-white text-right">Policarbonato óptico de alto impacto con protección UV y anti-sarro</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Garantía</span><span class="font-bold text-white text-right">3 años contra defectos de fabricación</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Resistencia</span><span class="font-bold text-white text-right">Soporta hasta 40 m de profundidad (Grado IP68 / IP69)</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Conectividad</span><span class="font-bold text-white text-right">100% compatible con Wi-Fi, Tuya, Smart Life, Alexa, Google Home, Zigbee y audiorítmicos</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Ángulo de apertura</span><span class="font-bold text-white text-right">160° de cobertura fotométrica homogénea</span></div>
-                </div>
-
-                <a href="https://wa.me/5215578935344?text=Hola,%20me%20interesa%20solicitar%20cotizaci%C3%B3n%20del%20modelo%20KRP-35" target="_blank" class="block w-full bg-gradient-to-r from-cyan-500 to-teal-400 text-[#030712] font-black py-4 rounded-xl text-xs text-center tracking-widest uppercase hover:brightness-110 transition shadow-[0_0_20px_rgba(34,211,238,0.3)]">
-                    SOLICITAR COTIZACIÓN KRP-35 ↗
-                </a>
             </div>
 
             <!-- PRODUCTO 3: MODELO SP-40 (DIMEABLE) -->
-            <div class="product-card p-5 sm:p-8 text-left space-y-6">
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 border-b border-cyan-500/20 pb-4">
-                    <h3 class="text-lg sm:text-xl font-black text-cyan-400 tracking-wider">MODELO SP-40 <span class="text-white text-sm font-bold">(DIMEABLE)</span></h3>
-                    <div class="flex items-center justify-between sm:justify-end gap-2">
-                        <span class="text-[10px] bg-transparent text-cyan-500 font-bold px-3 py-1 rounded-full border border-cyan-800 uppercase tracking-widest">Sin Nicho</span>
-                        <button onclick="toggleFicha('ficha-sp40', this)" class="bg-[#070b16] border border-slate-700 hover:border-cyan-500/50 text-cyan-400 font-bold px-4 py-2 rounded-xl text-xs transition duration-300 tracking-wider">
+            <div id="wrapper-sp40" class="max-w-xl mx-auto transition-all duration-500">
+                <div class="product-card p-5 sm:p-8 text-left space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 border-b border-cyan-500/20 pb-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+                            <h3 class="text-lg sm:text-xl font-black text-cyan-400 tracking-wider">MODELO SP-40 <span class="text-white text-sm font-bold">(DIMEABLE)</span></h3>
+                            <span class="text-[10px] bg-transparent text-cyan-500 font-bold px-3 py-1 rounded-full border border-cyan-800 uppercase tracking-widest w-fit">Sin Nicho</span>
+                        </div>
+                        <button onclick="toggleFichaDinamica('sp40', this)" class="bg-[#070b16] border border-cyan-500/40 hover:border-cyan-500 text-cyan-400 font-bold px-4 py-2 rounded-xl text-xs transition duration-300 tracking-wider w-full sm:w-auto shadow-lg">
                             ▼ VER FICHA TÉCNICA
                         </button>
                     </div>
-                </div>
 
-                <div class="product-image-container p-6 flex items-center justify-center">
-                    <img src="Fondo de sp-40 eliminado.png" alt="Modelo SP-40" class="w-full h-56 sm:h-64 object-contain">
-                </div>
+                    <div id="container-sp40" class="grid grid-cols-1 gap-6 items-start">
+                        <div class="space-y-6">
+                            <div class="product-image-container p-6 flex items-center justify-center">
+                                <img src="Fondo de sp-40 eliminado.png" alt="Modelo SP-40" class="w-full h-72 sm:h-96 object-contain filter drop-shadow-[0_10px_20px_rgba(34,211,238,0.2)]">
+                            </div>
 
-                <div class="specs-container p-4 space-y-4">
-                    <div class="flex flex-wrap items-center justify-center gap-3">
-                        <span class="inline-flex items-center space-x-2 border border-cyan-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
-                            <span class="w-3 h-3 rounded-full bg-white inline-block"></span><span>Blanco 6500K</span>
-                        </span>
-                        <span class="inline-flex items-center space-x-2 border border-blue-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
-                            <span class="w-3 h-3 rounded-full bg-blue-600 inline-block"></span><span>Royal Blue</span>
-                        </span>
-                        <span class="inline-flex items-center space-x-2 border border-purple-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
-                            <span class="w-3 h-3 rounded-full bg-gradient-to-r from-red-500 via-green-500 to-blue-500 inline-block"></span><span>RGB Multi</span>
-                        </span>
+                            <div class="specs-container p-4 space-y-4">
+                                <div class="flex flex-wrap items-center justify-center gap-3">
+                                    <span class="inline-flex items-center space-x-2 border border-cyan-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
+                                        <span class="w-3 h-3 rounded-full bg-white inline-block"></span><span>Blanco 6500K</span>
+                                    </span>
+                                    <span class="inline-flex items-center space-x-2 border border-blue-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
+                                        <span class="w-3 h-3 rounded-full bg-blue-600 inline-block"></span><span>Royal Blue</span>
+                                    </span>
+                                    <span class="inline-flex items-center space-x-2 border border-purple-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
+                                        <span class="w-3 h-3 rounded-full bg-gradient-to-r from-red-500 via-green-500 to-blue-500 inline-block"></span><span>RGB Multi</span>
+                                    </span>
+                                </div>
+                                <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-white">
+                                    <div class="spec-box"><span class="font-black text-xs tracking-wider">CREE®</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">LEDS</span></div>
+                                    <div class="spec-box"><span class="font-black text-xs tracking-wider">IP-68</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">ESTANQUEIDAD</span></div>
+                                    <div class="spec-box"><span class="font-black text-xs tracking-wider">50,000</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">HR VIDA ÚTIL</span></div>
+                                    <div class="spec-box"><span class="font-black text-[10px] tracking-wider uppercase">RGB / MONO</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">CONTROL COLOR</span></div>
+                                    <div class="spec-box col-span-2 sm:col-span-1"><span class="font-black text-[10px] tracking-wider uppercase">HECHO EN</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">MÉXICO</span></div>
+                                </div>
+                            </div>
+
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                El modelo SP-40 es una lámpara de sobreponer que no necesita Nicho, solo se requiere un ducto de tres cuartos a una pulgada en la pared de la Alberca para pasar el cable de alimentación. Se fija con un par de tornillos de acero inoxidable qué ya vienen incluidos.
+                            </p>
+
+                            <a href="https://wa.me/5215578935344?text=Hola,%20me%20interesa%20solicitar%20cotizaci%C3%B3n%20del%20modelo%20SP-40" target="_blank" class="block w-full bg-gradient-to-r from-cyan-500 to-teal-400 text-[#030712] font-black py-4 rounded-xl text-xs text-center tracking-widest uppercase hover:brightness-110 transition shadow-[0_0_20px_rgba(34,211,238,0.3)]">
+                                SOLICITAR COTIZACIÓN SP-40 ↗
+                            </a>
+                        </div>
+
+                        <div id="ficha-sp40" class="hidden specs-container p-6 space-y-2 border border-cyan-500/40 text-left">
+                            <h4 class="text-cyan-400 font-black text-sm uppercase tracking-widest mb-3 pb-2 border-b border-cyan-500/30">Ficha Técnica Oficial</h4>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Tipo de fijación</span><span class="font-bold text-white text-right">Sobreponer en muro ⌀</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Consumo energético</span><span class="font-bold text-white text-right">50 W</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Alimentación eléctrica</span><span class="font-bold text-white text-right">12 V DC (Corriente Directa)</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Módulo LED</span><span class="font-bold text-white text-right">XT-SPECTRUM de alta eficiencia</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Área de lente</span><span class="font-bold text-white text-right">100 mm</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Dimeabilidad</span><span class="font-bold text-white text-right">Atenuable de 10% a 100%</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Diámetro exterior</span><span class="font-bold text-white text-right">20 cm</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Cuerpo de la lámpara</span><span class="font-bold text-white text-right">Acero inoxidable de calidad marina</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Cable sumergible</span><span class="font-bold text-white text-right">100% cobre libre de oxígeno, 4 m de neopreno</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Lente difusor</span><span class="font-bold text-white text-right">Policarbonato óptico de alto impacto con protección UV y anti-sarro</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Garantía</span><span class="font-bold text-white text-right">3 años contra defectos de fabricación</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Resistencia</span><span class="font-bold text-white text-right">Soporta hasta 40 m de profundidad (Grado IP68 / IP69)</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Conectividad</span><span class="font-bold text-white text-right">100% compatible con Wi-Fi, Tuya, Smart Life, Alexa, Google Home, Zigbee y audiorítmicos</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Ángulo de apertura</span><span class="font-bold text-white text-right">160° de cobertura fotométrica homogénea</span></div>
+                        </div>
                     </div>
-                    <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-white">
-                        <div class="spec-box"><span class="font-black text-xs tracking-wider">CREE®</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">LEDS</span></div>
-                        <div class="spec-box"><span class="font-black text-xs tracking-wider">IP-68</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">ESTANQUEIDAD</span></div>
-                        <div class="spec-box"><span class="font-black text-xs tracking-wider">50,000</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">HR VIDA ÚTIL</span></div>
-                        <div class="spec-box"><span class="font-black text-[10px] tracking-wider uppercase">RGB / MONO</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">CONTROL COLOR</span></div>
-                        <div class="spec-box col-span-2 sm:col-span-1"><span class="font-black text-[10px] tracking-wider uppercase">HECHO EN</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">MÉXICO</span></div>
-                    </div>
                 </div>
-
-                <p class="text-sm text-slate-400 leading-relaxed">
-                    El modelo SP-40 es una lámpara de sobreponer que no necesita Nicho, solo se requiere un ducto de tres cuartos a una pulgada en la pared de la Alberca para pasar el cable de alimentación. Se fija con un par de tornillos de acero inoxidable qué ya vienen incluidos.
-                </p>
-
-                <div id="ficha-sp40" class="hidden specs-container p-4 space-y-1">
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Tipo de fijación</span><span class="font-bold text-white text-right">Sobreponer en muro ⌀</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Consumo energético</span><span class="font-bold text-white text-right">50 W</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Alimentación eléctrica</span><span class="font-bold text-white text-right">12 V DC (Corriente Directa)</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Módulo LED</span><span class="font-bold text-white text-right">XT-SPECTRUM de alta eficiencia</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Área de lente</span><span class="font-bold text-white text-right">100 mm</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Dimeabilidad</span><span class="font-bold text-white text-right">Atenuable de 10% a 100%</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Diámetro exterior</span><span class="font-bold text-white text-right">20 cm</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Cuerpo de la lámpara</span><span class="font-bold text-white text-right">Acero inoxidable de calidad marina</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Cable sumergible</span><span class="font-bold text-white text-right">100% cobre libre de oxígeno, 4 m de neopreno</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Lente difusor</span><span class="font-bold text-white text-right">Policarbonato óptico de alto impacto con protección UV y anti-sarro</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Garantía</span><span class="font-bold text-white text-right">3 años contra defectos de fabricación</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Resistencia</span><span class="font-bold text-white text-right">Soporta hasta 40 m de profundidad (Grado IP68 / IP69)</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Conectividad</span><span class="font-bold text-white text-right">100% compatible con Wi-Fi, Tuya, Smart Life, Alexa, Google Home, Zigbee y audiorítmicos</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Ángulo de apertura</span><span class="font-bold text-white text-right">160° de cobertura fotométrica homogénea</span></div>
-                </div>
-
-                <a href="https://wa.me/5215578935344?text=Hola,%20me%20interesa%20solicitar%20cotizaci%C3%B3n%20del%20modelo%20SP-40" target="_blank" class="block w-full bg-gradient-to-r from-cyan-500 to-teal-400 text-[#030712] font-black py-4 rounded-xl text-xs text-center tracking-widest uppercase hover:brightness-110 transition shadow-[0_0_20px_rgba(34,211,238,0.3)]">
-                    SOLICITAR COTIZACIÓN SP-40 ↗
-                </a>
             </div>
 
             <!-- PRODUCTO 4: REFLECTOR ANFIBIO RF-50 (DIMEABLE) -->
-            <div class="product-card p-5 sm:p-8 text-left space-y-6">
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 border-b border-cyan-500/20 pb-4">
-                    <h3 class="text-lg sm:text-xl font-black text-cyan-400 tracking-wider">REFLECTOR RF-50 <span class="text-white text-sm font-bold">(DIMEABLE)</span></h3>
-                    <div class="flex items-center justify-between sm:justify-end gap-2">
-                        <span class="text-[10px] bg-transparent text-cyan-500 font-bold px-3 py-1 rounded-full border border-cyan-800 uppercase tracking-widest">IP68 Anfibio</span>
-                        <button onclick="toggleFicha('ficha-rf50', this)" class="bg-[#070b16] border border-slate-700 hover:border-cyan-500/50 text-cyan-400 font-bold px-4 py-2 rounded-xl text-xs transition duration-300 tracking-wider">
+            <div id="wrapper-rf50" class="max-w-xl mx-auto transition-all duration-500">
+                <div class="product-card p-5 sm:p-8 text-left space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 border-b border-cyan-500/20 pb-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+                            <h3 class="text-lg sm:text-xl font-black text-cyan-400 tracking-wider">REFLECTOR RF-50 <span class="text-white text-sm font-bold">(DIMEABLE)</span></h3>
+                            <span class="text-[10px] bg-transparent text-cyan-500 font-bold px-3 py-1 rounded-full border border-cyan-800 uppercase tracking-widest w-fit">IP68 Anfibio</span>
+                        </div>
+                        <button onclick="toggleFichaDinamica('rf50', this)" class="bg-[#070b16] border border-cyan-500/40 hover:border-cyan-500 text-cyan-400 font-bold px-4 py-2 rounded-xl text-xs transition duration-300 tracking-wider w-full sm:w-auto shadow-lg">
                             ▼ VER FICHA TÉCNICA
                         </button>
                     </div>
-                </div>
 
-                <div class="product-image-container p-6 flex items-center justify-center">
-                    <img src="Fondo de REFLECTOR ANFIBIO RF-50 eliminado.png" alt="Reflector RF-50" class="w-full h-56 sm:h-64 object-contain">
-                </div>
+                    <div id="container-rf50" class="grid grid-cols-1 gap-6 items-start">
+                        <div class="space-y-6">
+                            <div class="product-image-container p-6 flex items-center justify-center">
+                                <img src="Fondo de REFLECTOR ANFIBIO RF-50 eliminado.png" alt="Reflector RF-50" class="w-full h-72 sm:h-96 object-contain filter drop-shadow-[0_10px_20px_rgba(34,211,238,0.2)]">
+                            </div>
 
-                <div class="specs-container p-4 space-y-4">
-                    <div class="flex flex-wrap items-center justify-center gap-3">
-                        <span class="inline-flex items-center space-x-2 border border-cyan-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
-                            <span class="w-3 h-3 rounded-full bg-white inline-block"></span><span>Blanco 6500K</span>
-                        </span>
-                        <span class="inline-flex items-center space-x-2 border border-blue-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
-                            <span class="w-3 h-3 rounded-full bg-blue-600 inline-block"></span><span>Royal Blue</span>
-                        </span>
-                        <span class="inline-flex items-center space-x-2 border border-purple-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
-                            <span class="w-3 h-3 rounded-full bg-gradient-to-r from-red-500 via-green-500 to-blue-500 inline-block"></span><span>RGB Multi</span>
-                        </span>
+                            <div class="specs-container p-4 space-y-4">
+                                <div class="flex flex-wrap items-center justify-center gap-3">
+                                    <span class="inline-flex items-center space-x-2 border border-cyan-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
+                                        <span class="w-3 h-3 rounded-full bg-white inline-block"></span><span>Blanco 6500K</span>
+                                    </span>
+                                    <span class="inline-flex items-center space-x-2 border border-blue-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
+                                        <span class="w-3 h-3 rounded-full bg-blue-600 inline-block"></span><span>Royal Blue</span>
+                                    </span>
+                                    <span class="inline-flex items-center space-x-2 border border-purple-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
+                                        <span class="w-3 h-3 rounded-full bg-gradient-to-r from-red-500 via-green-500 to-blue-500 inline-block"></span><span>RGB Multi</span>
+                                    </span>
+                                </div>
+                                <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-white">
+                                    <div class="spec-box"><span class="font-black text-xs tracking-wider">CREE®</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">LEDS</span></div>
+                                    <div class="spec-box"><span class="font-black text-xs tracking-wider">IP-68</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">ESTANQUEIDAD</span></div>
+                                    <div class="spec-box"><span class="font-black text-xs tracking-wider">50,000</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">HR VIDA ÚTIL</span></div>
+                                    <div class="spec-box"><span class="font-black text-[10px] tracking-wider uppercase">RGB / MONO</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">CONTROL COLOR</span></div>
+                                    <div class="spec-box col-span-2 sm:col-span-1"><span class="font-black text-[10px] tracking-wider uppercase">HECHO EN</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">MÉXICO</span></div>
+                                </div>
+                            </div>
+
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                Reflector para exterior con grado de estanqueidad IP 68 Lo que le permite funcionar dentro y fuera del agua, Gracias a sus radiadores de aluminio anodizado que mantienen el LED a la temperatura ideal de trabajo Aún en climas cálidos. Soporta también Inmersiones de hasta 10 metros de profundidad.
+                            </p>
+
+                            <a href="https://wa.me/5215578935344?text=Hola,%20me%20interesa%20solicitar%20cotizaci%C3%B3n%20del%20Reflector%20RF-50" target="_blank" class="block w-full bg-gradient-to-r from-cyan-500 to-teal-400 text-[#030712] font-black py-4 rounded-xl text-xs text-center tracking-widest uppercase hover:brightness-110 transition shadow-[0_0_20px_rgba(34,211,238,0.3)]">
+                                SOLICITAR COTIZACIÓN RF-50 ↗
+                            </a>
+                        </div>
+
+                        <div id="ficha-rf50" class="hidden specs-container p-6 space-y-2 border border-cyan-500/40 text-left">
+                            <h4 class="text-cyan-400 font-black text-sm uppercase tracking-widest mb-3 pb-2 border-b border-cyan-500/30">Ficha Técnica Oficial</h4>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Tipo de fijación</span><span class="font-bold text-white text-right">BASE DIRECCIONABLE</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Consumo energético</span><span class="font-bold text-white text-right">35W</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Alimentación eléctrica</span><span class="font-bold text-white text-right">12 V DC (Corriente Directa)</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Módulo LED</span><span class="font-bold text-white text-right">XT-SPECTRUM de alta eficiencia</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Área de lente</span><span class="font-bold text-white text-right">50 mm</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Dimeabilidad</span><span class="font-bold text-white text-right">Atenuable de 10% a 100%</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Diámetro exterior</span><span class="font-bold text-white text-right">10 CM POR 15 CM</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Cuerpo de la lámpara</span><span class="font-bold text-white text-right">ALUMINIO ANODIZADO</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Cable sumergible</span><span class="font-bold text-white text-right">100% cobre libre de oxígeno, 4 m de neopreno</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Lente difusor</span><span class="font-bold text-white text-right">Policarbonato óptico de alto impacto con protección UV y anti-sarro</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Garantía</span><span class="font-bold text-white text-right">3 años contra defectos de fabricación</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Resistencia</span><span class="font-bold text-white text-right">Soporta hasta 10 m de profundidad (Grado IP68 / IP69)</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Conectividad</span><span class="font-bold text-white text-right">100% compatible con Wi-Fi, Tuya, Smart Life, Alexa, Google Home, Zigbee y audiorítmicos</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Ángulo de apertura</span><span class="font-bold text-white text-right">160° de cobertura fotométrica homogénea</span></div>
+                        </div>
                     </div>
-                    <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-white">
-                        <div class="spec-box"><span class="font-black text-xs tracking-wider">CREE®</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">LEDS</span></div>
-                        <div class="spec-box"><span class="font-black text-xs tracking-wider">IP-68</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">ESTANQUEIDAD</span></div>
-                        <div class="spec-box"><span class="font-black text-xs tracking-wider">50,000</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">HR VIDA ÚTIL</span></div>
-                        <div class="spec-box"><span class="font-black text-[10px] tracking-wider uppercase">RGB / MONO</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">CONTROL COLOR</span></div>
-                        <div class="spec-box col-span-2 sm:col-span-1"><span class="font-black text-[10px] tracking-wider uppercase">HECHO EN</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">MÉXICO</span></div>
-                    </div>
                 </div>
-
-                <p class="text-sm text-slate-400 leading-relaxed">
-                    Reflector para exterior con grado de estanqueidad IP 68 Lo que le permite funcionar dentro y fuera del agua, Gracias a sus radiadores de aluminio anodizado que mantienen el LED a la temperatura ideal de trabajo Aún en climas cálidos. Soporta también Inmersiones de hasta 10 metros de profundidad.
-                </p>
-
-                <div id="ficha-rf50" class="hidden specs-container p-4 space-y-1">
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Tipo de fijación</span><span class="font-bold text-white text-right">BASE DIRECCIONABLE</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Consumo energético</span><span class="font-bold text-white text-right">35W</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Alimentación eléctrica</span><span class="font-bold text-white text-right">12 V DC (Corriente Directa)</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Módulo LED</span><span class="font-bold text-white text-right">XT-SPECTRUM de alta eficiencia</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Área de lente</span><span class="font-bold text-white text-right">50 mm</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Dimeabilidad</span><span class="font-bold text-white text-right">Atenuable de 10% a 100%</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Diámetro exterior</span><span class="font-bold text-white text-right">10 CM POR 15 CM</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Cuerpo de la lámpara</span><span class="font-bold text-white text-right">ALUMINIO ANODIZADO</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Cable sumergible</span><span class="font-bold text-white text-right">100% cobre libre de oxígeno, 4 m de neopreno</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Lente difusor</span><span class="font-bold text-white text-right">Policarbonato óptico de alto impacto con protección UV y anti-sarro</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Garantía</span><span class="font-bold text-white text-right">3 años contra defectos de fabricación</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Resistencia</span><span class="font-bold text-white text-right">Soporta hasta 10 m de profundidad (Grado IP68 / IP69)</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Conectividad</span><span class="font-bold text-white text-right">100% compatible con Wi-Fi, Tuya, Smart Life, Alexa, Google Home, Zigbee y audiorítmicos</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Ángulo de apertura</span><span class="font-bold text-white text-right">160° de cobertura fotométrica homogénea</span></div>
-                </div>
-
-                <a href="https://wa.me/5215578935344?text=Hola,%20me%20interesa%20solicitar%20cotizaci%C3%B3n%20del%20Reflector%20RF-50" target="_blank" class="block w-full bg-gradient-to-r from-cyan-500 to-teal-400 text-[#030712] font-black py-4 rounded-xl text-xs text-center tracking-widest uppercase hover:brightness-110 transition shadow-[0_0_20px_rgba(34,211,238,0.3)]">
-                    SOLICITAR COTIZACIÓN RF-50 ↗
-                </a>
             </div>
 
             <!-- PRODUCTO 5: MOD. NICHO 27 (DIMEABLE) -->
-            <div class="product-card p-5 sm:p-8 text-left space-y-6">
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 border-b border-cyan-500/20 pb-4">
-                    <h3 class="text-lg sm:text-xl font-black text-cyan-400 tracking-wider">MOD. NICHO 27 <span class="text-white text-sm font-bold">(DIMEABLE)</span></h3>
-                    <div class="flex items-center justify-between sm:justify-end gap-2">
-                        <span class="text-[10px] bg-transparent text-cyan-500 font-bold px-3 py-1 rounded-full border border-cyan-800 uppercase tracking-widest">Nicho 26 cm</span>
-                        <button onclick="toggleFicha('ficha-nicho27', this)" class="bg-[#070b16] border border-slate-700 hover:border-cyan-500/50 text-cyan-400 font-bold px-4 py-2 rounded-xl text-xs transition duration-300 tracking-wider">
+            <div id="wrapper-nicho27" class="max-w-xl mx-auto transition-all duration-500">
+                <div class="product-card p-5 sm:p-8 text-left space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 border-b border-cyan-500/20 pb-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+                            <h3 class="text-lg sm:text-xl font-black text-cyan-400 tracking-wider">MOD. NICHO 27 <span class="text-white text-sm font-bold">(DIMEABLE)</span></h3>
+                            <span class="text-[10px] bg-transparent text-cyan-500 font-bold px-3 py-1 rounded-full border border-cyan-800 uppercase tracking-widest w-fit">Nicho 26 cm</span>
+                        </div>
+                        <button onclick="toggleFichaDinamica('nicho27', this)" class="bg-[#070b16] border border-cyan-500/40 hover:border-cyan-500 text-cyan-400 font-bold px-4 py-2 rounded-xl text-xs transition duration-300 tracking-wider w-full sm:w-auto shadow-lg">
                             ▼ VER FICHA TÉCNICA
                         </button>
                     </div>
-                </div>
 
-                <div class="product-image-container p-6 flex items-center justify-center">
-                    <img src="Fondo de nicho-27 eliminado.png" alt="Mod Nicho 27" class="w-full h-56 sm:h-64 object-contain">
-                </div>
+                    <div id="container-nicho27" class="grid grid-cols-1 gap-6 items-start">
+                        <div class="space-y-6">
+                            <div class="product-image-container p-6 flex items-center justify-center">
+                                <img src="Fondo de nicho-27 eliminado.png" alt="Mod Nicho 27" class="w-full h-72 sm:h-96 object-contain filter drop-shadow-[0_10px_20px_rgba(34,211,238,0.2)]">
+                            </div>
 
-                <div class="specs-container p-4 space-y-4">
-                    <div class="flex flex-wrap items-center justify-center gap-3">
-                        <span class="inline-flex items-center space-x-2 border border-cyan-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
-                            <span class="w-3 h-3 rounded-full bg-white inline-block"></span><span>Blanco 6500K</span>
-                        </span>
-                        <span class="inline-flex items-center space-x-2 border border-blue-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
-                            <span class="w-3 h-3 rounded-full bg-blue-600 inline-block"></span><span>Royal Blue</span>
-                        </span>
-                        <span class="inline-flex items-center space-x-2 border border-purple-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
-                            <span class="w-3 h-3 rounded-full bg-gradient-to-r from-red-500 via-green-500 to-blue-500 inline-block"></span><span>RGB Multi</span>
-                        </span>
+                            <div class="specs-container p-4 space-y-4">
+                                <div class="flex flex-wrap items-center justify-center gap-3">
+                                    <span class="inline-flex items-center space-x-2 border border-cyan-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
+                                        <span class="w-3 h-3 rounded-full bg-white inline-block"></span><span>Blanco 6500K</span>
+                                    </span>
+                                    <span class="inline-flex items-center space-x-2 border border-blue-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
+                                        <span class="w-3 h-3 rounded-full bg-blue-600 inline-block"></span><span>Royal Blue</span>
+                                    </span>
+                                    <span class="inline-flex items-center space-x-2 border border-purple-500/40 bg-[#070b16] px-3.5 py-1.5 rounded-full text-[11px] font-bold text-slate-200 shadow">
+                                        <span class="w-3 h-3 rounded-full bg-gradient-to-r from-red-500 via-green-500 to-blue-500 inline-block"></span><span>RGB Multi</span>
+                                    </span>
+                                </div>
+                                <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-white">
+                                    <div class="spec-box"><span class="font-black text-xs tracking-wider">CREE®</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">LEDS</span></div>
+                                    <div class="spec-box"><span class="font-black text-xs tracking-wider">IP-68</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">ESTANQUEIDAD</span></div>
+                                    <div class="spec-box"><span class="font-black text-xs tracking-wider">50,000</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">HR VIDA ÚTIL</span></div>
+                                    <div class="spec-box"><span class="font-black text-[10px] tracking-wider uppercase">RGB / MONO</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">CONTROL COLOR</span></div>
+                                    <div class="spec-box col-span-2 sm:col-span-1"><span class="font-black text-[10px] tracking-wider uppercase">HECHO EN</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">MÉXICO</span></div>
+                                </div>
+                            </div>
+
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                Esa lámpara fue diseñada para cubrir los nichos grandes de 26 cm que se usaban con lámparas de halogeno, su díceño moderno y minimalista dará a su alberca una nueva imagen sin tener que hacer ninguna modificación ya que cubre perfectamente el hueco.
+                            </p>
+
+                            <a href="https://wa.me/5215578935344?text=Hola,%20me%20interesa%20solicitar%20cotizaci%C3%B3n%20del%20Mod.%20Nicho%2027" target="_blank" class="block w-full bg-gradient-to-r from-cyan-500 to-teal-400 text-[#030712] font-black py-4 rounded-xl text-xs text-center tracking-widest uppercase hover:brightness-110 transition shadow-[0_0_20px_rgba(34,211,238,0.3)]">
+                                SOLICITAR COTIZACIÓN NICHO 27 ↗
+                            </a>
+                        </div>
+
+                        <div id="ficha-nicho27" class="hidden specs-container p-6 space-y-2 border border-cyan-500/40 text-left">
+                            <h4 class="text-cyan-400 font-black text-sm uppercase tracking-widest mb-3 pb-2 border-b border-cyan-500/30">Ficha Técnica Oficial</h4>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Tipo de fijación</span><span class="font-bold text-white text-right">Montaje en arillo de nicho grande</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Consumo energético</span><span class="font-bold text-white text-right">50 W</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Alimentación eléctrica</span><span class="font-bold text-white text-right">12 V DC (Corriente Directa)</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Módulo LED</span><span class="font-bold text-white text-right">XT-SPECTRUM de alta eficiencia</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Área de lente</span><span class="font-bold text-white text-right">100 mm</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Dimeabilidad</span><span class="font-bold text-white text-right">Atenuable de 10% a 100%</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Cuerpo de la lámpara</span><span class="font-bold text-white text-right">Acero inoxidable de calidad marina</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Cable sumergible</span><span class="font-bold text-white text-right">100% cobre libre de oxígeno, 4 m de neopreno</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Garantía</span><span class="font-bold text-white text-right">3 años contra defectos de fabricación</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Resistencia</span><span class="font-bold text-white text-right">Soporta hasta 40 m de profundidad (Grado IP68 / IP69)</span></div>
+                            <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Conectividad</span><span class="font-bold text-white text-right">100% compatible con Wi-Fi, Tuya, Smart Life, Alexa, Google Home, Zigbee y audiorítmicos</span></div>
+                        </div>
                     </div>
-                    <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-white">
-                        <div class="spec-box"><span class="font-black text-xs tracking-wider">CREE®</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">LEDS</span></div>
-                        <div class="spec-box"><span class="font-black text-xs tracking-wider">IP-68</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">ESTANQUEIDAD</span></div>
-                        <div class="spec-box"><span class="font-black text-xs tracking-wider">50,000</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">HR VIDA ÚTIL</span></div>
-                        <div class="spec-box"><span class="font-black text-[10px] tracking-wider uppercase">RGB / MONO</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">CONTROL COLOR</span></div>
-                        <div class="spec-box col-span-2 sm:col-span-1"><span class="font-black text-[10px] tracking-wider uppercase">HECHO EN</span><span class="text-[9px] text-cyan-400 font-bold tracking-widest mt-1">MÉXICO</span></div>
-                    </div>
                 </div>
-
-                <p class="text-sm text-slate-400 leading-relaxed">
-                    Esa lámpara fue diseñada para cubrir los nichos grandes de 26 cm que se usaban con lámparas de halogeno, su díceño moderno y minimalista dará a su alberca una nueva imagen sin tener que hacer ninguna modificación ya que cubre perfectamente el hueco.
-                </p>
-
-                <div id="ficha-nicho27" class="hidden specs-container p-4 space-y-1">
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Tipo de fijación</span><span class="font-bold text-white text-right">Montaje en arillo de nicho grande</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Consumo energético</span><span class="font-bold text-white text-right">50 W</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Alimentación eléctrica</span><span class="font-bold text-white text-right">12 V DC (Corriente Directa)</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Módulo LED</span><span class="font-bold text-white text-right">XT-SPECTRUM de alta eficiencia</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Área de lente</span><span class="font-bold text-white text-right">100 mm</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Dimeabilidad</span><span class="font-bold text-white text-right">Atenuable de 10% a 100%</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Cuerpo de la lámpara</span><span class="font-bold text-white text-right">Acero inoxidable de calidad marina</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Cable sumergible</span><span class="font-bold text-white text-right">100% cobre libre de oxígeno, 4 m de neopreno</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Garantía</span><span class="font-bold text-white text-right">3 años contra defectos de fabricación</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Resistencia</span><span class="font-bold text-white text-right">Soporta hasta 40 m de profundidad (Grado IP68 / IP69)</span></div>
-                    <div class="ficha-row flex justify-between py-2 text-xs"><span class="text-slate-400">Conectividad</span><span class="font-bold text-white text-right">100% compatible con Wi-Fi, Tuya, Smart Life, Alexa, Google Home, Zigbee y audiorítmicos</span></div>
-                </div>
-
-                <a href="https://wa.me/5215578935344?text=Hola,%20me%20interesa%20solicitar%20cotizaci%C3%B3n%20del%20Mod.%20Nicho%2027" target="_blank" class="block w-full bg-gradient-to-r from-cyan-500 to-teal-400 text-[#030712] font-black py-4 rounded-xl text-xs text-center tracking-widest uppercase hover:brightness-110 transition shadow-[0_0_20px_rgba(34,211,238,0.3)]">
-                    SOLICITAR COTIZACIÓN NICHO 27 ↗
-                </a>
             </div>
 
             <div class="mt-16 pb-12">
@@ -533,7 +571,7 @@
         </div>
     </section>
 
-    <!-- Script JavaScript para detección automática de pantalla (Chico / Grande) -->
+    <!-- Script JavaScript para detección de pantalla y expansión dinámica -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const esChico = window.innerWidth < 768;
@@ -546,7 +584,7 @@
                 videoInicio.load();
             }
 
-            // 2. Asignar video de fondo para la sección de Sellado Permanente (chip grande.mp4 / chip chico.mp4)
+            // 2. Asignar video de fondo para la sección de Sellado Permanente
             const videoChip = document.getElementById("video-chip");
             if (videoChip) {
                 const nombreVideoChip = esChico ? "chip chico.mp4" : "chip grande.mp4";
@@ -555,14 +593,27 @@
             }
         });
 
-        // Función para desplegar la ficha técnica
-        function toggleFicha(id, btn) {
-            const ficha = document.getElementById(id);
+        // Función para alternar el diseño centrado a dos columnas al hacer clic en Ver Ficha Técnica
+        function toggleFichaDinamica(id, btn) {
+            const wrapper = document.getElementById('wrapper-' + id);
+            const container = document.getElementById('container-' + id);
+            const ficha = document.getElementById('ficha-' + id);
+
             if (ficha.classList.contains('hidden')) {
+                // Mostrar ficha técnica y ampliar contenedor
                 ficha.classList.remove('hidden');
+                wrapper.classList.remove('max-w-xl');
+                wrapper.classList.add('max-w-6xl');
+                container.classList.remove('grid-cols-1');
+                container.classList.add('lg:grid-cols-2');
                 btn.innerHTML = '▲ OCULTAR FICHA TÉCNICA';
             } else {
+                // Ocultar ficha técnica y centrar tarjeta de nuevo
                 ficha.classList.add('hidden');
+                wrapper.classList.remove('max-w-6xl');
+                wrapper.classList.add('max-w-xl');
+                container.classList.remove('lg:grid-cols-2');
+                container.classList.add('grid-cols-1');
                 btn.innerHTML = '▼ VER FICHA TÉCNICA';
             }
         }
