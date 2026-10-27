@@ -4,22 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>NAUTIKA® | Marine LED Lighting</title>
-  <!-- Tipografías Industriales / Modernas de Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
 
   <style>
-    /* ================= VARIABLES DE DISEÑO PREMIUM ================= */
+    /* ================= VARIABLES ================= */
     :root {
       --primary: #0095ff;
       --primary-bright: #00d2ff;
       --primary-dark: #0051a8;
       --bg-deep: #01060e;
-      --bg-card: #051020;
+      --bg-card: #040d1a;
       --text-white: #ffffff;
-      --text-LightBlue: #b8d4f2;
-      --border-glow: rgba(0, 162, 255, 0.35);
+      --text-muted: #b8d4f2;
     }
 
     * {
@@ -41,18 +39,17 @@
       background-color: var(--bg-deep);
     }
 
-    /* ================= BARRA DE NAVEGACIÓN FIJA (SMARTPHONE & PC) ================= */
+    /* ================= NAVBAR SUPERIOR ULTRA COMPACTO ================= */
     .top-navbar {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 1000;
-      background: rgba(1, 6, 14, 0.82);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0, 149, 255, 0.2);
-      padding: 0.75rem 1.25rem;
+      background: linear-gradient(180deg, rgba(1, 6, 14, 0.85) 0%, rgba(1, 6, 14, 0.2) 100%);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      padding: 0.7rem 1.15rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -67,16 +64,16 @@
 
     .nav-brand-title {
       font-family: 'Orbitron', sans-serif;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 800;
-      letter-spacing: 4px;
+      letter-spacing: 3.5px;
       line-height: 1;
     }
 
     .nav-brand-sub {
-      font-size: 0.52rem;
-      letter-spacing: 2.5px;
-      color: var(--text-LightBlue);
+      font-size: 0.48rem;
+      letter-spacing: 2.2px;
+      color: var(--text-muted);
       margin-top: 3px;
       display: flex;
       align-items: center;
@@ -89,156 +86,158 @@
       font-weight: 800;
       padding: 0px 4px;
       border-radius: 2px;
-      font-size: 0.48rem;
-      letter-spacing: 1px;
+      font-size: 0.45rem;
     }
 
     .nav-cta {
-      background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+      background: rgba(0, 149, 255, 0.85);
+      border: 1px solid rgba(0, 210, 255, 0.6);
       color: var(--text-white);
       text-decoration: none;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 700;
-      padding: 0.55rem 1rem;
+      padding: 0.48rem 0.95rem;
       border-radius: 50px;
       letter-spacing: 0.8px;
       text-transform: uppercase;
-      box-shadow: 0 0 15px rgba(0, 149, 255, 0.45);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 0 15px rgba(0, 149, 255, 0.4);
     }
 
-    .nav-cta:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 0 22px rgba(0, 210, 255, 0.75);
+    /* ================= TRANSICIONES SUAVES ENTRE SECCIONES ================= */
+    .section-fade-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 110px;
+      background: linear-gradient(180deg, var(--bg-deep) 0%, transparent 100%);
+      z-index: 4;
+      pointer-events: none;
     }
 
-    /* ================= SECCIÓN 1: HERO / INICIO ================= */
+    .section-fade-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 130px;
+      background: linear-gradient(0deg, var(--bg-deep) 0%, transparent 100%);
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    /* Animación al hacer scroll */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ================= SECCIÓN 1: HERO (VIDEO LIBRE Y HEXÁGONOS ABAJO) ================= */
     .hero-section {
       position: relative;
       width: 100%;
-      min-height: 100vh;
-      min-height: 100dvh;
+      height: 100vh;
+      height: 100dvh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-end; /* Empuja los botones hacia abajo para dejar libre el video */
       align-items: center;
-      text-align: center;
-      padding: 6rem 1.25rem 3rem 1.25rem;
+      padding: 1rem 0.75rem 2.2rem 0.75rem;
       overflow: hidden;
     }
 
     .hero-video {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      min-width: 100%;
-      min-height: 100%;
-      width: auto;
-      height: auto;
-      transform: translate(-50%, -50%);
+      inset: 0;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       z-index: 1;
     }
 
+    /* Capa sutil: transparente arriba/centro para ver el video claro, oscura solo muy abajo para leer los botones */
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(2, 12, 28, 0.65) 0%, rgba(1, 6, 14, 0.92) 100%);
+      background: linear-gradient(
+        180deg,
+        rgba(1, 6, 14, 0.25) 0%,
+        rgba(1, 6, 14, 0.0) 25%,
+        rgba(1, 6, 14, 0.05) 62%,
+        rgba(1, 6, 14, 0.78) 88%,
+        var(--bg-deep) 100%
+      );
       z-index: 2;
+      pointer-events: none;
     }
 
-    .hero-content {
+    .hero-bottom-dock {
       position: relative;
-      z-index: 3;
-      max-width: 1050px;
+      z-index: 5;
       width: 100%;
+      max-width: 780px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      gap: 0.75rem;
     }
 
-    .logo-hero {
-      margin-bottom: 1.5rem;
-    }
-
-    .logo-hero-main {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(2.3rem, 7vw, 4.8rem);
-      font-weight: 900;
-      letter-spacing: clamp(6px, 2vw, 14px);
-      color: var(--text-white);
-      text-shadow: 0 4px 30px rgba(0, 149, 255, 0.45);
-      line-height: 1.05;
-    }
-
-    .logo-hero-sub {
-      font-size: clamp(0.75rem, 2vw, 1.15rem);
-      letter-spacing: clamp(4px, 1.5vw, 9px);
-      font-weight: 600;
-      color: #d8eaff;
-      margin-top: 0.4rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-
-    .logo-hero-sub .led-box {
-      background: var(--text-white);
-      color: #020813;
-      font-weight: 900;
-      padding: 2px 8px;
-      border-radius: 3px;
+    .hero- subtle-badge {
+      font-size: 0.68rem;
       letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.85);
+      background: rgba(2, 12, 28, 0.45);
+      border: 1px solid rgba(0, 195, 255, 0.3);
+      padding: 0.3rem 0.85rem;
+      border-radius: 50px;
+      backdrop-filter: blur(6px);
     }
 
-    .hero-description {
-      font-size: clamp(0.95rem, 2.2vw, 1.25rem);
-      color: var(--text-LightBlue);
-      max-width: 680px;
-      line-height: 1.6;
-      margin-bottom: 2.5rem;
-      font-weight: 400;
-    }
-
-    /* ================= 4 BOTONES HEXAGONALES PROFESIONALES ================= */
+    /* 4 Hexágonos en 1 sola fila compacta tanto en móvil como en PC */
     .hex-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
+      gap: 0.5rem;
       width: 100%;
-      max-width: 900px;
       justify-items: center;
+      align-items: center;
     }
 
     .hex-item {
-      position: relative;
-      width: 195px;
-      height: 220px;
-      filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 12px rgba(0, 149, 255, 0.35));
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+      width: 100%;
+      max-width: 150px;
+      aspect-ratio: 0.9 / 1;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.65));
+      transition: transform 0.3s ease, filter 0.3s ease;
     }
 
     .hex-item:hover {
-      transform: translateY(-8px) scale(1.04);
-      filter: drop-shadow(0 12px 25px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 22px rgba(0, 210, 255, 0.85));
+      transform: translateY(-5px) scale(1.04);
+      filter: drop-shadow(0 6px 18px rgba(0, 210, 255, 0.75));
     }
 
     .hex-border {
       width: 100%;
       height: 100%;
-      background: linear-gradient(180deg, var(--primary-bright) 0%, rgba(0, 149, 255, 0.25) 50%, var(--primary) 100%);
+      background: linear-gradient(180deg, var(--primary-bright), rgba(0, 149, 255, 0.35), var(--primary));
       clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-      padding: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: 1.5px;
     }
 
     .hex-button {
       width: 100%;
       height: 100%;
-      background: linear-gradient(160deg, rgba(8, 28, 58, 0.92) 0%, rgba(2, 10, 22, 0.98) 100%);
+      /* Cristal translúcido para dejar ver el video detrás */
+      background: rgba(3, 14, 30, 0.58);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
       text-decoration: none;
       color: var(--text-white);
@@ -246,50 +245,43 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 1.4rem 1rem;
+      padding: 0.5rem 0.35rem;
       text-align: center;
       transition: background 0.3s ease;
     }
 
     .hex-item:hover .hex-button {
-      background: linear-gradient(160deg, #0066cc 0%, #002b66 100%);
+      background: rgba(0, 119, 255, 0.75);
     }
 
     .hex-svg {
-      width: 38px;
-      height: 38px;
+      width: 22px;
+      height: 22px;
       stroke: var(--primary-bright);
-      margin-bottom: 0.75rem;
-      transition: transform 0.3s ease, stroke 0.3s ease;
-    }
-
-    .hex-item:hover .hex-svg {
-      stroke: #ffffff;
-      transform: scale(1.12);
+      margin-bottom: 0.35rem;
+      flex-shrink: 0;
     }
 
     .hex-text {
-      font-size: 0.82rem;
+      font-size: 0.62rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
-      line-height: 1.3;
-      color: #f0f7ff;
+      letter-spacing: 0.4px;
+      line-height: 1.15;
+      color: #ffffff;
     }
 
-    /* ================= SECCIONES 2 Y 3: SOLO FONDO ANIMADO (SIN TEXTO) ================= */
+    /* ================= SECCIONES 2 Y 3: SOLO VIDEO CON TRANSICIONES ================= */
     .pure-video-section {
       position: relative;
       width: 100%;
       height: 100vh;
       height: 100dvh;
-      background-color: #000000;
+      background-color: var(--bg-deep);
       overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
-      border-top: 1px solid rgba(0, 149, 255, 0.2);
-      border-bottom: 1px solid rgba(0, 149, 255, 0.2);
     }
 
     .video-ambient-backdrop {
@@ -314,14 +306,14 @@
 
     .next-section-arrow {
       position: absolute;
-      bottom: 22px;
+      bottom: 26px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 5;
-      width: 44px;
-      height: 44px;
+      z-index: 6;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      background: rgba(2, 10, 24, 0.65);
+      background: rgba(2, 10, 24, 0.55);
       border: 1px solid rgba(0, 195, 255, 0.5);
       backdrop-filter: blur(6px);
       display: flex;
@@ -330,27 +322,18 @@
       color: var(--text-white);
       text-decoration: none;
       animation: bounceArrow 2s infinite ease-in-out;
-      transition: background 0.25s ease, border-color 0.25s ease;
-    }
-
-    .next-section-arrow:hover {
-      background: var(--primary);
-      border-color: var(--text-white);
     }
 
     @keyframes bounceArrow {
       0%, 100% { transform: translate(-50%, 0); }
-      50% { transform: translate(-50%, -8px); }
+      50% { transform: translate(-50%, -7px); }
     }
 
-    /* ================= SECCIÓN 4: CATÁLOGO DE PRODUCTOS Y CONVERSIÓN ================= */
+    /* ================= SECCIÓN 4: PRODUCTOS (SIN RECORTAR IMÁGENES) ================= */
     .catalog-section {
       position: relative;
-      padding: 5rem 1.25rem 6rem 1.25rem;
-      background-color: var(--bg-deep);
-      background-image: 
-        radial-gradient(circle at 50% 0%, rgba(0, 149, 255, 0.16) 0%, transparent 55%),
-        linear-gradient(180deg, #01060e 0%, #041022 50%, #01060e 100%);
+      padding: 4.5rem 1rem 6rem 1rem;
+      background: linear-gradient(180deg, var(--bg-deep) 0%, #041022 50%, var(--bg-deep) 100%);
     }
 
     .catalog-container {
@@ -360,25 +343,24 @@
 
     .catalog-header {
       text-align: center;
-      margin-bottom: 3.5rem;
+      margin-bottom: 3rem;
     }
 
     .catalog-eyebrow {
       color: var(--primary-bright);
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 4px;
-      margin-bottom: 0.5rem;
+      letter-spacing: 3.5px;
+      margin-bottom: 0.4rem;
     }
 
     .catalog-title {
       font-family: 'Orbitron', sans-serif;
-      font-size: clamp(1.8rem, 4.5vw, 3rem);
+      font-size: clamp(1.7rem, 4.5vw, 2.8rem);
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 3px;
-      color: var(--text-white);
+      letter-spacing: 2.5px;
     }
 
     .catalog-title span {
@@ -386,93 +368,79 @@
     }
 
     .catalog-line {
-      width: 90px;
-      height: 4px;
+      width: 85px;
+      height: 3px;
       background: linear-gradient(90deg, transparent, var(--primary-bright), transparent);
-      margin: 1rem auto 0 auto;
-      border-radius: 2px;
+      margin: 0.85rem auto 0 auto;
     }
 
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 2.25rem;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 2rem;
     }
 
     .product-card {
       background: var(--bg-card);
       border: 1px solid rgba(0, 149, 255, 0.28);
-      border-radius: 20px;
+      border-radius: 18px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.75);
-      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.75);
+      transition: transform 0.35s ease, border-color 0.35s ease;
     }
 
     .product-card:hover {
-      transform: translateY(-7px);
+      transform: translateY(-6px);
       border-color: var(--primary-bright);
-      box-shadow: 0 20px 45px rgba(0, 149, 255, 0.25);
     }
 
-    /* Contenedor con recorte automático de los botones inferiores originales de la imagen */
+    /* Imagen 100% íntegra sin ningún recorte */
     .product-image-frame {
       width: 100%;
       background: #01050c;
-      position: relative;
       line-height: 0;
-      overflow: hidden;
-      cursor: pointer;
     }
 
     .product-image-frame img {
       width: 100%;
       height: auto;
       display: block;
-      /* Recorta automáticamente el 13% inferior donde salían los botones viejos en las imágenes */
-      margin-bottom: -24%;
-      transition: transform 0.45s ease;
-    }
-
-    .product-card:hover .product-image-frame img {
-      transform: scale(1.015);
+      object-fit: contain;
     }
 
     .product-actions {
-      position: relative;
-      z-index: 2;
-      padding: 1.5rem 1.35rem 1.65rem 1.35rem;
+      padding: 1.35rem 1.2rem 1.5rem 1.2rem;
       background: linear-gradient(180deg, #06152d 0%, #030a17 100%);
-      border-top: 1px solid rgba(0, 149, 255, 0.35);
+      border-top: 1px solid rgba(0, 149, 255, 0.3);
       display: flex;
       flex-direction: column;
-      gap: 0.85rem;
+      gap: 0.75rem;
     }
 
     .product-name {
       font-family: 'Orbitron', sans-serif;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 800;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.2px;
       text-align: center;
       color: var(--text-white);
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.2rem;
       text-transform: uppercase;
     }
 
-    /* Botones de acción en cada tarjeta */
     .btn-action {
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      padding: 0.9rem 1.25rem;
+      padding: 0.85rem 1.15rem;
       border-radius: 50px;
       text-decoration: none;
-      font-size: 0.84rem;
+      font-size: 0.8rem;
       font-weight: 700;
-      letter-spacing: 0.6px;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
       transition: all 0.25s ease;
       cursor: pointer;
@@ -482,11 +450,11 @@
     .btn-action-left {
       display: flex;
       align-items: center;
-      gap: 0.65rem;
+      gap: 0.6rem;
     }
 
     .btn-view-tech {
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(255, 255, 255, 0.04);
       color: var(--text-white);
       border: 1.5px solid rgba(255, 255, 255, 0.8);
     }
@@ -500,153 +468,254 @@
       background: linear-gradient(90deg, #0088ff 0%, #0051d5 100%);
       color: var(--text-white);
       border: 1px solid rgba(0, 210, 255, 0.4);
-      box-shadow: 0 6px 20px rgba(0, 119, 255, 0.45);
-    }
-
-    .btn-wa-quote:hover {
-      background: linear-gradient(90deg, #00a6ff 0%, #0066ff 100%);
-      box-shadow: 0 8px 25px rgba(0, 162, 255, 0.75);
-      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(0, 119, 255, 0.4);
     }
 
     .btn-icon-svg {
-      width: 20px;
-      height: 20px;
+      width: 19px;
+      height: 19px;
       flex-shrink: 0;
     }
 
     .btn-chevron {
-      width: 16px;
-      height: 16px;
+      width: 15px;
+      height: 15px;
       flex-shrink: 0;
-      opacity: 0.85;
     }
 
-    /* ================= VISOR MODAL DE FICHA TÉCNICA (LIGHTBOX) ================= */
-    .tech-modal {
+    /* ================= MODAL DE FICHA TÉCNICA ESTRUCTURADA REAL ================= */
+    .spec-modal-backdrop {
       position: fixed;
       inset: 0;
       z-index: 2000;
-      background: rgba(1, 6, 14, 0.94);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      background: rgba(1, 6, 14, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      justify-content: flex-start;
-      padding: 4.5rem 1rem 2rem 1rem;
+      padding: 1rem;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease;
-      overflow-y: auto;
     }
 
-    .tech-modal.active {
+    .spec-modal-backdrop.active {
       opacity: 1;
       pointer-events: auto;
     }
 
-    .modal-topbar {
-      position: fixed;
-      top: 0;
-      left: 0;
+    .spec-modal-card {
       width: 100%;
-      padding: 0.85rem 1.25rem;
-      background: rgba(2, 10, 24, 0.9);
+      max-width: 650px;
+      max-height: 90vh;
+      max-height: 90dvh;
+      background: linear-gradient(180deg, #06162e 0%, #020813 100%);
+      border: 1px solid var(--primary-bright);
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95), 0 0 30px rgba(0, 149, 255, 0.25);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.3s ease;
+    }
+
+    .spec-modal-backdrop.active .spec-modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .spec-modal-header {
+      padding: 1.15rem 1.35rem;
+      background: rgba(1, 8, 20, 0.9);
       border-bottom: 1px solid rgba(0, 149, 255, 0.3);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 2010;
     }
 
-    .modal-title {
+    .spec-modal-brand {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .spec-modal-model {
       font-family: 'Orbitron', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 800;
-      color: var(--primary-bright);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--text-white);
+      letter-spacing: 1px;
     }
 
-    .modal-close-btn {
-      background: rgba(255, 255, 255, 0.1);
+    .spec-modal-subtitle {
+      font-size: 0.75rem;
+      color: var(--primary-bright);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-top: 2px;
+    }
+
+    .spec-close-btn {
+      background: rgba(255, 255, 255, 0.08);
       color: var(--text-white);
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      border-radius: 50px;
-      padding: 0.45rem 1rem;
-      font-size: 0.78rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .spec-modal-body {
+      padding: 1.35rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .spec-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .spec-pill {
+      background: rgba(0, 149, 255, 0.14);
+      border: 1px solid rgba(0, 195, 255, 0.4);
+      color: #e6f4ff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.4rem 0.75rem;
+      border-radius: 50px;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: background 0.2s ease;
+      letter-spacing: 0.5px;
     }
 
-    .modal-close-btn:hover {
-      background: var(--primary);
-      border-color: var(--primary-bright);
+    .spec-block {
+      background: rgba(2, 10, 22, 0.75);
+      border: 1px solid rgba(0, 149, 255, 0.25);
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
     }
 
-    .modal-image-wrapper {
-      max-width: 580px;
+    .spec-block-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--primary-bright);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.65rem;
+    }
+
+    .spec-desc-text {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: #dbeaff;
+    }
+
+    .spec-table {
       width: 100%;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(0, 149, 255, 0.4);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
-      background: #01050c;
+      border-collapse: collapse;
     }
 
-    .modal-image-wrapper img {
-      width: 100%;
-      height: auto;
-      display: block;
-      /* También oculta los botones inferiores de la imagen dentro del visor */
-      margin-bottom: -24%;
+    .spec-table tr {
+      border-bottom: 1px solid rgba(0, 149, 255, 0.14);
+    }
+
+    .spec-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .spec-table td {
+      padding: 0.55rem 0.25rem;
+      font-size: 0.82rem;
+      vertical-align: top;
+    }
+
+    .spec-table td.spec-key {
+      color: var(--text-muted);
+      width: 44%;
+      font-weight: 500;
+    }
+
+    .spec-table td.spec-val {
+      color: var(--text-white);
+      font-weight: 700;
+    }
+
+    .spec-modal-footer {
+      padding: 1rem 1.35rem;
+      background: rgba(1, 8, 20, 0.95);
+      border-top: 1px solid rgba(0, 149, 255, 0.25);
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .spec-modal-footer .btn-action {
+      flex: 1;
+      min-width: 200px;
+      justify-content: center;
+      gap: 0.5rem;
     }
 
     /* ================= BOTÓN FLOTANTE DE WHATSAPP ================= */
     .floating-wa {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      bottom: 18px;
+      right: 18px;
       z-index: 999;
-      width: 58px;
-      height: 58px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
       color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 6px 22px rgba(37, 211, 102, 0.5);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
       text-decoration: none;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .floating-wa:hover {
-      transform: scale(1.08);
-      box-shadow: 0 8px 28px rgba(37, 211, 102, 0.8);
     }
 
     .floating-wa svg {
-      width: 30px;
-      height: 30px;
+      width: 27px;
+      height: 27px;
       fill: currentColor;
     }
 
-    /* ================= FOOTER ================= */
     footer {
       background: #010409;
       border-top: 1px solid rgba(0, 149, 255, 0.15);
-      padding: 2.5rem 1.25rem;
+      padding: 2.2rem 1rem;
       text-align: center;
-      color: var(--text-LightBlue);
-      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-size: 0.8rem;
     }
 
-    /* ================= ADAPTACIÓN ESPECIAL PARA ORDENADORES Y MÓVILES ================= */
+    /* ================= AJUSTES RESPONSIVOS ================= */
+    @media (min-width: 769px) {
+      .hex-grid {
+        gap: 1.2rem;
+      }
+      .hex-item {
+        max-width: 165px;
+      }
+      .hex-svg {
+        width: 28px;
+        height: 28px;
+        margin-bottom: 0.5rem;
+      }
+      .hex-text {
+        font-size: 0.75rem;
+      }
+    }
+
     @media (min-width: 992px) {
       .main-clean-video {
         width: auto;
@@ -657,77 +726,31 @@
       }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 480px) {
       .hero-section {
-        padding: 5.5rem 1rem 2.5rem 1rem;
+        padding: 1rem 0.45rem 1.6rem 0.45rem;
       }
-
-      .hero-description {
-        font-size: 0.92rem;
-        margin-bottom: 1.8rem;
-        padding: 0 0.5rem;
-      }
-
-      /* Cuadrícula 2x2 ergonómica para pulgares en Smartphone */
       .hex-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.9rem;
-        max-width: 350px;
+        gap: 0.35rem;
       }
-
-      .hex-item {
-        width: 155px;
-        height: 175px;
-      }
-
       .hex-svg {
-        width: 30px;
-        height: 30px;
-        margin-bottom: 0.5rem;
+        width: 19px;
+        height: 19px;
+        margin-bottom: 0.25rem;
       }
-
       .hex-text {
-        font-size: 0.72rem;
-        line-height: 1.25;
+        font-size: 0.53rem;
+        letter-spacing: 0.2px;
       }
-
-      .catalog-section {
-        padding: 3.5rem 0.85rem 5rem 0.85rem;
-      }
-
-      .catalog-header {
-        margin-bottom: 2.2rem;
-      }
-
       .products-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .product-actions {
-        padding: 1.25rem 1rem 1.4rem 1rem;
-      }
-
-      .btn-action {
-        font-size: 0.78rem;
-        padding: 0.85rem 1rem;
-      }
-    }
-
-    @media (max-width: 360px) {
-      .hex-item {
-        width: 140px;
-        height: 160px;
-      }
-      .hex-text {
-        font-size: 0.66rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- BARRA SUPERIOR FIJA -->
+  <!-- BARRA SUPERIOR COMPACTA -->
   <header class="top-navbar">
     <a href="#inicio" class="nav-brand">
       <span class="nav-brand-title">NΛUTIKΛ®</span>
@@ -737,7 +760,7 @@
   </header>
 
   <!-- =================================================================
-       SECCIÓN 1: HERO / INICIO (Impacto Principal)
+       SECCIÓN 1: HERO / INICIO (El video luce libre en la pantalla)
   ================================================================== -->
   <section id="inicio" class="hero-section">
     <video class="hero-video" autoplay loop muted playsinline>
@@ -745,40 +768,24 @@
     </video>
     <div class="hero-overlay"></div>
 
-    <div class="hero-content">
-      <div class="logo-hero">
-        <h1 class="logo-hero-main">NΛUTIKΛ®</h1>
-        <div class="logo-hero-sub">
-          <span>MARINE</span>
-          <span class="led-box">LED</span>
-          <span>LIGHTING</span>
-        </div>
-      </div>
-
-      <p class="hero-description">
-        Ingeniería y fabricación de iluminación LED submarina, marina y arquitectónica de alto rendimiento con protección grado IP68 / IP69.
-      </p>
-
-      <!-- 4 Botones Hexagonales -->
+    <!-- Barra inferior de 4 hexágonos compactos translúcidos que no tapan el video -->
+    <div class="hero-bottom-dock">
       <nav class="hex-grid">
         
-        <!-- Botón 1: Somos fabricantes -->
+        <!-- 1. Somos fabricantes -->
         <div class="hex-item">
           <div class="hex-border">
             <a href="#quienes-somos" class="hex-button">
               <svg class="hex-svg" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M2 20h20"></path>
                 <path d="M5 20V8l7 4V8l7 4V4h3v16"></path>
-                <path d="M8 16h.01"></path>
-                <path d="M12 16h.01"></path>
-                <path d="M16 16h.01"></path>
               </svg>
               <span class="hex-text">Somos fabricantes</span>
             </a>
           </div>
         </div>
 
-        <!-- Botón 2: Tecnología de sellado permanente -->
+        <!-- 2. Tecnología de sellado permanente -->
         <div class="hex-item">
           <div class="hex-border">
             <a href="#tecnologia" class="hex-button">
@@ -786,12 +793,12 @@
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                 <path d="m9 12 2 2 4-4"></path>
               </svg>
-              <span class="hex-text">Tecnología de sellado permanente</span>
+              <span class="hex-text">Sellado permanente</span>
             </a>
           </div>
         </div>
 
-        <!-- Botón 3: Productos -->
+        <!-- 3. Productos -->
         <div class="hex-item">
           <div class="hex-border">
             <a href="#productos" class="hex-button">
@@ -805,7 +812,7 @@
           </div>
         </div>
 
-        <!-- Botón 4: Solicitar cotización -->
+        <!-- 4. Solicitar cotización -->
         <div class="hex-item">
           <div class="hex-border">
             <a href="https://wa.me/5210000000000?text=Hola,%20me%20interesa%20solicitar%20una%20cotizaci%C3%B3n%20de%20iluminaci%C3%B3n%20NAUTIKA" target="_blank" rel="noopener" class="hex-button">
@@ -822,9 +829,10 @@
   </section>
 
   <!-- =================================================================
-       SECCIÓN 2: QUIÉNES SOMOS (100% Video Limpio sin Texto)
+       SECCIÓN 2: QUIÉNES SOMOS (Solo Video + Transiciones suaves)
   ================================================================== -->
-  <section id="quienes-somos" class="pure-video-section">
+  <section id="quienes-somos" class="pure-video-section reveal-section">
+    <div class="section-fade-top"></div>
     <video class="video-ambient-backdrop" autoplay loop muted playsinline aria-hidden="true">
       <source src="video seccion 2 somos fabricantes.mp4" type="video/mp4">
     </video>
@@ -832,16 +840,18 @@
       <source src="video seccion 2 somos fabricantes.mp4" type="video/mp4">
     </video>
     <a href="#tecnologia" class="next-section-arrow" aria-label="Siguiente sección">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="6 9 12 15 18 9"></polyline>
       </svg>
     </a>
+    <div class="section-fade-bottom"></div>
   </section>
 
   <!-- =================================================================
-       SECCIÓN 3: TECNOLOGÍA (100% Video Limpio sin Texto)
+       SECCIÓN 3: TECNOLOGÍA (Solo Video + Transiciones suaves)
   ================================================================== -->
-  <section id="tecnologia" class="pure-video-section">
+  <section id="tecnologia" class="pure-video-section reveal-section">
+    <div class="section-fade-top"></div>
     <video class="video-ambient-backdrop" autoplay loop muted playsinline aria-hidden="true">
       <source src="video seccion 3 tecnologia de sellado permanente.mp4" type="video/mp4">
     </video>
@@ -849,16 +859,17 @@
       <source src="video seccion 3 tecnologia de sellado permanente.mp4" type="video/mp4">
     </video>
     <a href="#productos" class="next-section-arrow" aria-label="Ver productos">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="6 9 12 15 18 9"></polyline>
       </svg>
     </a>
+    <div class="section-fade-bottom"></div>
   </section>
 
   <!-- =================================================================
        SECCIÓN 4: PRODUCTOS Y CONVERSIÓN
   ================================================================== -->
-  <section id="productos" class="catalog-section">
+  <section id="productos" class="catalog-section reveal-section">
     <div class="catalog-container">
       <header class="catalog-header">
         <p class="catalog-eyebrow">NΛUTIKΛ® Marine LED Lighting</p>
@@ -870,14 +881,14 @@
 
         <!-- 1. SP-40 -->
         <article class="product-card">
-          <div class="product-image-frame" onclick="openFicha('1 sp-40.png', 'Modelo SP-40')">
-            <img src="1 sp-40.png" alt="Modelo SP-40 Lámpara de Sobreponer Sin Nicho" loading="lazy">
+          <div class="product-image-frame">
+            <img src="1 sp-40.png" alt="Modelo SP-40" loading="lazy">
           </div>
           <div class="product-actions">
             <h3 class="product-name">Modelo SP-40</h3>
-            <button type="button" onclick="openFicha('1 sp-40.png', 'Modelo SP-40')" class="btn-action btn-view-tech">
+            <button type="button" onclick="openTechSheet('sp40')" class="btn-action btn-view-tech">
               <span class="btn-action-left">
-                <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                 Ver Ficha Técnica
               </span>
               <svg class="btn-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
@@ -894,14 +905,14 @@
 
         <!-- 2. MINIBRITE -->
         <article class="product-card">
-          <div class="product-image-frame" onclick="openFicha('2 minibrite.png', 'Modelo MINIBRITE')">
-            <img src="2 minibrite.png" alt="Modelo MINIBRITE Lámpara LED de Sobreponer" loading="lazy">
+          <div class="product-image-frame">
+            <img src="2 minibrite.png" alt="Modelo MINIBRITE" loading="lazy">
           </div>
           <div class="product-actions">
             <h3 class="product-name">Modelo MINIBRITE</h3>
-            <button type="button" onclick="openFicha('2 minibrite.png', 'Modelo MINIBRITE')" class="btn-action btn-view-tech">
+            <button type="button" onclick="openTechSheet('minibrite')" class="btn-action btn-view-tech">
               <span class="btn-action-left">
-                <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                 Ver Ficha Técnica
               </span>
               <svg class="btn-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
@@ -918,14 +929,14 @@
 
         <!-- 3. KRP-50 -->
         <article class="product-card">
-          <div class="product-image-frame" onclick="openFicha('3 krp-50.png', 'Modelo KRP-50')">
-            <img src="3 krp-50.png" alt="Modelo KRP-50 Lámpara LED de Repuesto para Nicho Grande" loading="lazy">
+          <div class="product-image-frame">
+            <img src="3 krp-50.png" alt="Modelo KRP-50" loading="lazy">
           </div>
           <div class="product-actions">
             <h3 class="product-name">Modelo KRP-50</h3>
-            <button type="button" onclick="openFicha('3 krp-50.png', 'Modelo KRP-50')" class="btn-action btn-view-tech">
+            <button type="button" onclick="openTechSheet('krp50')" class="btn-action btn-view-tech">
               <span class="btn-action-left">
-                <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                 Ver Ficha Técnica
               </span>
               <svg class="btn-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
@@ -942,14 +953,14 @@
 
         <!-- 4. KRP-35 -->
         <article class="product-card">
-          <div class="product-image-frame" onclick="openFicha('4 krp-35.png', 'Modelo KRP-35')">
-            <img src="4 krp-35.png" alt="Modelo KRP-35 Lámpara LED de Repuesto para Nicho Chico" loading="lazy">
+          <div class="product-image-frame">
+            <img src="4 krp-35.png" alt="Modelo KRP-35" loading="lazy">
           </div>
           <div class="product-actions">
             <h3 class="product-name">Modelo KRP-35</h3>
-            <button type="button" onclick="openFicha('4 krp-35.png', 'Modelo KRP-35')" class="btn-action btn-view-tech">
+            <button type="button" onclick="openTechSheet('krp35')" class="btn-action btn-view-tech">
               <span class="btn-action-left">
-                <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                 Ver Ficha Técnica
               </span>
               <svg class="btn-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
@@ -966,14 +977,14 @@
 
         <!-- 5. NICHO 27 -->
         <article class="product-card">
-          <div class="product-image-frame" onclick="openFicha('5 nicho 27.png', 'Modelo NICHO 27')">
-            <img src="5 nicho 27.png" alt="Modelo NICHO 27 Lámpara LED de Repuesto para Nicho Grande" loading="lazy">
+          <div class="product-image-frame">
+            <img src="5 nicho 27.png" alt="Modelo NICHO 27" loading="lazy">
           </div>
           <div class="product-actions">
             <h3 class="product-name">Modelo NICHO 27</h3>
-            <button type="button" onclick="openFicha('5 nicho 27.png', 'Modelo NICHO 27')" class="btn-action btn-view-tech">
+            <button type="button" onclick="openTechSheet('nicho27')" class="btn-action btn-view-tech">
               <span class="btn-action-left">
-                <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                 Ver Ficha Técnica
               </span>
               <svg class="btn-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
@@ -990,14 +1001,14 @@
 
         <!-- 6. RF-50 -->
         <article class="product-card">
-          <div class="product-image-frame" onclick="openFicha('6 rf-50.png', 'Modelo RF-50')">
-            <img src="6 rf-50.png" alt="Modelo RF-50 Reflector LED Anfibio" loading="lazy">
+          <div class="product-image-frame">
+            <img src="6 rf-50.png" alt="Modelo RF-50" loading="lazy">
           </div>
           <div class="product-actions">
             <h3 class="product-name">Modelo RF-50</h3>
-            <button type="button" onclick="openFicha('6 rf-50.png', 'Modelo RF-50')" class="btn-action btn-view-tech">
+            <button type="button" onclick="openTechSheet('rf50')" class="btn-action btn-view-tech">
               <span class="btn-action-left">
-                <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                 Ver Ficha Técnica
               </span>
               <svg class="btn-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
@@ -1014,14 +1025,14 @@
 
         <!-- 7. RF-200 -->
         <article class="product-card">
-          <div class="product-image-frame" onclick="openFicha('7 rf-200.png', 'Modelo RF-200')">
-            <img src="7 rf-200.png" alt="Modelo RF-200 Reflector LED de Alto Rendimiento" loading="lazy">
+          <div class="product-image-frame">
+            <img src="7 rf-200.png" alt="Modelo RF-200" loading="lazy">
           </div>
           <div class="product-actions">
             <h3 class="product-name">Modelo RF-200</h3>
-            <button type="button" onclick="openFicha('7 rf-200.png', 'Modelo RF-200')" class="btn-action btn-view-tech">
+            <button type="button" onclick="openTechSheet('rf200')" class="btn-action btn-view-tech">
               <span class="btn-action-left">
-                <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                 Ver Ficha Técnica
               </span>
               <svg class="btn-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
@@ -1038,14 +1049,14 @@
 
         <!-- 8. YATE -->
         <article class="product-card">
-          <div class="product-image-frame" onclick="openFicha('8 yate.png', 'Modelo YATE')">
-            <img src="8 yate.png" alt="Modelo YATE Iluminación para Barcos y Yates" loading="lazy">
+          <div class="product-image-frame">
+            <img src="8 yate.png" alt="Modelo YATE" loading="lazy">
           </div>
           <div class="product-actions">
             <h3 class="product-name">Modelo YATE</h3>
-            <button type="button" onclick="openFicha('8 yate.png', 'Modelo YATE')" class="btn-action btn-view-tech">
+            <button type="button" onclick="openTechSheet('yate')" class="btn-action btn-view-tech">
               <span class="btn-action-left">
-                <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                 Ver Ficha Técnica
               </span>
               <svg class="btn-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
@@ -1062,14 +1073,14 @@
 
         <!-- 9. PROYECTOS ESPECIALES -->
         <article class="product-card">
-          <div class="product-image-frame" onclick="openFicha('9 proyectos especiales.png', 'Proyectos Especiales')">
-            <img src="9 proyectos especiales.png" alt="Proyectos Especiales Bajo Requerimiento del Cliente" loading="lazy">
+          <div class="product-image-frame">
+            <img src="9 proyectos especiales.png" alt="Proyectos Especiales" loading="lazy">
           </div>
           <div class="product-actions">
             <h3 class="product-name">Proyectos Especiales</h3>
-            <button type="button" onclick="openFicha('9 proyectos especiales.png', 'Proyectos Especiales')" class="btn-action btn-view-tech">
+            <button type="button" onclick="openTechSheet('proyectos')" class="btn-action btn-view-tech">
               <span class="btn-action-left">
-                <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                 Ver Ficha Técnica
               </span>
               <svg class="btn-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
@@ -1088,14 +1099,43 @@
     </div>
   </section>
 
-  <!-- VISOR INTERACTIVO DE FICHA TÉCNICA (MODAL) -->
-  <div id="fichaModal" class="tech-modal" onclick="closeFicha(event)">
-    <div class="modal-topbar" onclick="event.stopPropagation()">
-      <span id="modalTitle" class="modal-title">Ficha Técnica</span>
-      <button type="button" class="modal-close-btn" onclick="closeFicha()">✕ Cerrar</button>
-    </div>
-    <div class="modal-image-wrapper" onclick="event.stopPropagation()">
-      <img id="modalImg" src="" alt="Ficha Técnica NAUTIKA">
+  <!-- =================================================================
+       MODAL DE FICHA TÉCNICA INTERACTIVA ESTRUCTURADA (HTML REAL)
+  ================================================================== -->
+  <div id="specModal" class="spec-modal-backdrop" onclick="closeTechSheet()">
+    <div class="spec-modal-card" onclick="event.stopPropagation()">
+      <div class="spec-modal-header">
+        <div class="spec-modal-brand">
+          <span id="specTitle" class="spec-modal-model">MODELO SP-40</span>
+          <span id="specSub" class="spec-modal-subtitle">LÁMPARA DE SOBREPONER SIN NICHO</span>
+        </div>
+        <button type="button" class="spec-close-btn" onclick="closeTechSheet()" aria-label="Cerrar">✕</button>
+      </div>
+
+      <div class="spec-modal-body">
+        <div id="specBadges" class="spec-highlights"></div>
+
+        <div class="spec-block">
+          <h4 class="spec-block-title">Descripción</h4>
+          <p id="specDesc" class="spec-desc-text"></p>
+        </div>
+
+        <div class="spec-block">
+          <h4 class="spec-block-title">Especificaciones Técnicas</h4>
+          <table class="spec-table">
+            <tbody id="specTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="spec-modal-footer">
+        <button type="button" onclick="window.print()" class="btn-action btn-view-tech">
+          🖨️ Imprimir / Guardar PDF
+        </button>
+        <a id="specWaBtn" href="#" target="_blank" rel="noopener" class="btn-action btn-wa-quote">
+          💬 Cotizar este modelo
+        </a>
+      </div>
     </div>
   </div>
 
@@ -1106,33 +1146,224 @@
     </svg>
   </a>
 
-  <!-- FOOTER -->
   <footer>
     <p>© 2026 NΛUTIKΛ® Marine LED Lighting. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- SCRIPT PARA ABRIR Y CERRAR EL VISOR DE FICHA TÉCNICA -->
+  <!-- BASE DE DATOS DE FICHAS TÉCNICAS REALES Y ANIMACIONES SCROLL -->
   <script>
-    function openFicha(imgSrc, productName) {
-      const modal = document.getElementById('fichaModal');
-      const modalImg = document.getElementById('modalImg');
-      const modalTitle = document.getElementById('modalTitle');
+    const fichasTecnicas = {
+      sp40: {
+        title: "MODELO SP-40",
+        sub: "Lámpara de Sobreponer Sin Nicho",
+        badges: ["Instalación Sencilla", "Diseño Moderno y Extraplano", "Componentes de Alta Calidad"],
+        desc: "El modelo SP-40 es una lámpara de sobreponer que no necesita nicho, solo se requiere un ducto de 3/4 a 1 pulgada en la pared de la alberca para pasar el cable de alimentación. Se fija con un par de tornillos de acero inoxidable incluidos. De diseño moderno y extraplano, fabricado con componentes de calidad Premium.",
+        specs: [
+          ["Tipo de fijación", "Sobreponer en muro"],
+          ["Consumo energético", "50 watts"],
+          ["Alimentación eléctrica", "12 V DC"],
+          ["Diámetro exterior", "20 cm"],
+          ["Cuerpo", "Acero inoxidable grado marino"],
+          ["Lente difusor", "Policarbonato óptico UV"],
+          ["Garantía", "3 años contra defectos"],
+          ["Resistencia", "Hasta 40 m (IP68 / IP69)"],
+          ["Conectividad", "Wi-Fi, Tuya, Smart Life, Alexa, Google Home"],
+          ["Ángulo de apertura", "160°"]
+        ]
+      },
+      minibrite: {
+        title: "MODELO MINIBRITE",
+        sub: "Lámpara LED de Sobreponer",
+        badges: ["Fijación en Muro", "Compacta y Muy Potente", "Ideal para Albercas, Playas y Áreas Húmedas"],
+        desc: "El modelo MINIBRITE es una lámpara de sobreponer, compacta de diseño minimalista y muy potente, de tan solo 10 cm de diámetro. No requiere nicho, solo necesitamos un ducto en el muro de la alberca de 3/4 a una pulgada para pasar el cable de alimentación. Sus componentes de calidad premium nos permiten ofrecer 3 años de garantía.",
+        specs: [
+          ["Tipo de fijación", "Fijación en muro"],
+          ["Consumo energético", "35 W"],
+          ["Alimentación eléctrica", "12 V DC (Corriente Directa)"],
+          ["Módulo LED", "XT-SPECTRUM de alta eficiencia"],
+          ["Área de lente", "50 mm"],
+          ["Dimeabilidad", "Atenuable de 10% a 100%"],
+          ["Diámetro exterior", "11 cm"],
+          ["Cuerpo de la lámpara", "Acero inoxidable de calidad marina"],
+          ["Cable sumergible", "100% cobre libre de oxígeno, 4 m de neopreno"],
+          ["Lente difusor", "Policarbonato óptico de alto impacto con protección UV y anti-sarro"],
+          ["Garantía", "3 años contra defectos de fabricación"],
+          ["Resistencia / Profundidad", "Soporta hasta 40 m de profundidad (Grado IP68 / IP69)"],
+          ["Conectividad Inteligente", "100% compatible con Wi-Fi, Tuya, Smart Life, Alexa, Google Home, Zigbee y audiorítmicos"],
+          ["Ángulo de apertura", "160° de cobertura fotométrica homogénea"]
+        ]
+      },
+      krp50: {
+        title: "MODELO KRP-50",
+        sub: "Lámpara LED de Repuesto para Nicho Grande",
+        badges: ["Sustituto Ideal Pentair®", "80% de Ahorro Energético", "Instalación en solo 10 minutos"],
+        desc: "Este modelo de lámpara LED fue diseñada para usarse como sustituto o repuesto de las lámparas tradicionales de halógeno de la marca Pentair® de nicho grande. Se adapta en 10 minutos, migrando a tecnología LED, con el 80% de ahorro energético y colores mucho más vibrantes. No requiere ninguna modificación en su alberca.",
+        specs: [
+          ["Tipo de fijación", "Montaje en anillo de Pentair"],
+          ["Consumo energético", "50 W"],
+          ["Alimentación eléctrica", "12 V DC (Corriente Directa)"],
+          ["Módulo LED", "XT-SPECTRUM de alta eficiencia"],
+          ["Área de lente", "100 mm"],
+          ["Dimeabilidad", "Atenuable de 10% a 100%"],
+          ["Diámetro exterior", "20 cm"],
+          ["Cuerpo de la lámpara", "Acero inoxidable de calidad marina"],
+          ["Cable sumergible", "100% cobre libre de oxígeno, 4 m de neopreno"],
+          ["Lente difusor", "Policarbonato óptico de alto impacto con protección UV y anti-sarro"],
+          ["Garantía", "3 años contra defectos de fabricación"],
+          ["Resistencia / Profundidad", "Soporta hasta 40 m de profundidad (Grado IP68 / IP69)"],
+          ["Conectividad Inteligente", "100% compatible con Wi-Fi, Tuya, Smart Life, Alexa, Google Home, Zigbee y audiorítmicos"],
+          ["Ángulo de apertura", "160° de cobertura fotométrica homogénea"]
+        ]
+      },
+      krp35: {
+        title: "MODELO KRP-35",
+        sub: "Lámpara LED de Repuesto para Nicho Chico",
+        badges: ["Sustituto Ideal Pentair®", "80% de Ahorro Energético", "Instalación en solo 10 minutos"],
+        desc: "Este modelo de lámpara LED fue diseñada para usarse como sustituto o repuesto de las lámparas tradicionales de halógeno de la marca Pentair® de nicho chico. Se adapta en 10 minutos, migrando a tecnología LED, con el 80% de ahorro energético. No se requiere ninguna modificación en su alberca, utilizamos el mismo sistema.",
+        specs: [
+          ["Tipo de fijación", "Montaje en anillo de Pentair"],
+          ["Consumo energético", "35 W"],
+          ["Alimentación eléctrica", "12 V DC (Corriente Directa)"],
+          ["Módulo LED", "XT-SPECTRUM de alta eficiencia"],
+          ["Área de lente", "50 mm"],
+          ["Dimeabilidad", "Atenuable de 10% a 100%"],
+          ["Diámetro exterior", "11 cm"],
+          ["Cuerpo de la lámpara", "Acero inoxidable de calidad marina"],
+          ["Cable sumergible", "100% cobre libre de oxígeno, 4 m de neopreno"],
+          ["Lente difusor", "Policarbonato óptico de alto impacto con protección UV y anti-sarro"],
+          ["Garantía", "3 años contra defectos de fabricación"],
+          ["Resistencia / Profundidad", "Soporta hasta 40 m de profundidad (Grado IP68 / IP69)"],
+          ["Conectividad Inteligente", "100% compatible con Wi-Fi, Tuya, Smart Life, Alexa, Google Home, Zigbee y audiorítmicos"],
+          ["Ángulo de apertura", "160° de cobertura fotométrica homogénea"]
+        ]
+      },
+      nicho27: {
+        title: "MODELO NICHO 27",
+        sub: "Lámpara LED de Repuesto para Nicho Grande",
+        badges: ["Sustituto Ideal Halógeno Pentair®", "80% de Ahorro Energético", "Instalación en solo 10 minutos"],
+        desc: "Diseñada para usarse como sustituto o repuesto de las lámparas tradicionales de halógeno de la marca Pentair® de nicho grande. Se adapta en 10 minutos sin requerir ninguna modificación en su alberca, cubriendo perfectamente el hueco con su diámetro exterior de 27 cm.",
+        specs: [
+          ["Tipo de fijación", "Montaje en anillo de Pentair"],
+          ["Consumo energético", "50 W"],
+          ["Alimentación eléctrica", "12 V DC (Corriente Directa)"],
+          ["Módulo LED", "XT-SPECTRUM de alta eficiencia"],
+          ["Área de lente", "100 mm"],
+          ["Dimeabilidad", "Atenuable de 10% a 100%"],
+          ["Diámetro exterior", "27 cm"],
+          ["Cuerpo de la lámpara", "Acero inoxidable de calidad marina"],
+          ["Cable sumergible", "100% cobre libre de oxígeno, 4 m de neopreno"],
+          ["Lente difusor", "Policarbonato óptico de alto impacto con protección UV y anti-sarro"],
+          ["Garantía", "3 años contra defectos de fabricación"],
+          ["Resistencia / Profundidad", "Soporta hasta 40 m de profundidad (Grado IP68 / IP69)"],
+          ["Conectividad Inteligente", "100% compatible con Wi-Fi, Tuya, Smart Life, Alexa, Google Home, Zigbee y audiorítmicos"],
+          ["Ángulo de apertura", "160° de cobertura fotométrica homogénea"]
+        ]
+      },
+      rf50: {
+        title: "MODELO RF-50",
+        sub: "Reflector LED Anfibio",
+        badges: ["Uso Dentro y Fuera del Agua", "Radiadores de Aluminio Anodizado", "Diseño Minimalista"],
+        desc: "Reflector LED para exterior con grado de estanqueidad IP68, lo que le permite funcionar dentro y fuera del agua. Gracias a sus radiadores de aluminio anodizado mantiene el LED a la temperatura ideal de trabajo, aún en climas cálidos. Soporta inmersiones de hasta 10 metros de profundidad.",
+        specs: [
+          ["Tipo de fijación", "Base direccionable"],
+          ["Consumo energético", "35 W"],
+          ["Alimentación eléctrica", "12 V DC (Corriente Directa)"],
+          ["Módulo LED", "XT-SPECTRUM de alta eficiencia"],
+          ["Área de lente", "50 mm"],
+          ["Dimeabilidad", "Atenuable de 10% a 100%"],
+          ["Diámetro exterior", "10 cm por 15 cm"],
+          ["Cuerpo de la lámpara", "Aluminio anodizado"],
+          ["Cable sumergible", "100% cobre libre de oxígeno, 4 m de neopreno"],
+          ["Lente difusor", "Policarbonato óptico de alto impacto con protección UV y anti-sarro"],
+          ["Garantía", "3 años contra defectos de fabricación"],
+          ["Resistencia / Profundidad", "Soporta hasta 10 m de profundidad (Grado IP68 / IP69)"],
+          ["Conectividad Inteligente", "100% compatible con Wi-Fi, Tuya, Smart Life, Alexa, Google Home, Zigbee y audiorítmicos"],
+          ["Ángulo de apertura", "160° de cobertura fotométrica homogénea"]
+        ]
+      },
+      rf200: {
+        title: "MODELO RF-200",
+        sub: "Reflector LED de Alto Rendimiento",
+        badges: ["Árboles de hasta 15 m", "Potencia y Cobertura Profesional", "Diseño Resistente para Exteriores"],
+        desc: "El modelo RF-200 es un reflector LED de alto rendimiento diseñado para iluminar árboles de hasta 15 metros de altura, jardines, fachadas y grandes áreas exteriores. Fabricado con materiales de alta calidad y un diseño robusto para intemperie, ofrece un desempeño confiable en proyectos residenciales, comerciales y marinos.",
+        specs: [
+          ["Potencia", "200 W"],
+          ["Altura de iluminación", "Hasta 15 m"],
+          ["Uso en exteriores", "Grado IP68"],
+          ["Garantía", "3 Años"]
+        ]
+      },
+      yate: {
+        title: "MODELO YATE",
+        sub: "Iluminación para Barcos y Yates",
+        badges: ["Máxima Durabilidad", "Resistente al Agua Salada", "Luz LED de Alto Rendimiento"],
+        desc: "Diseñada especialmente para la iluminación de barcos y yates, esta lámpara LED ofrece una luz potente y uniforme bajo el agua, realzando la belleza de su embarcación y mejorando la seguridad en espacios marinos. Fabricación en acero inoxidable de calidad marina.",
+        specs: [
+          ["Consumo", "35 W"],
+          ["Diámetro exterior", "11 cm"],
+          ["Profundidad", "Hasta 40 m"],
+          ["Garantía", "3 Años"]
+        ]
+      },
+      proyectos: {
+        title: "PROYECTOS ESPECIALES",
+        sub: "Bajo Requerimiento del Cliente",
+        badges: ["Ingeniería Especializada", "Diseños Personalizados", "Calidad Marina"],
+        desc: "En NAUTIKA desarrollamos proyectos de iluminación submarina bajo requerimiento del cliente. Contamos con un equipo de ingeniería especializada y amplia experiencia en el diseño, suministro e instalación de sistemas de iluminación para cenotes, arrecifes, muelles, marinas, fuentes, embarcaciones o cualquier proyecto submarino.",
+        specs: [
+          ["Aplicaciones", "Cenotes, Arrecifes, Muelles, Marinas, Fuentes y Embarcaciones"],
+          ["Diseño", "Personalizado bajo especificaciones del cliente"],
+          ["Materiales", "Acero inoxidable grado marino y componentes de alta durabilidad"],
+          ["Asesoría", "Ingeniería especializada integral"]
+        ]
+      }
+    };
 
-      modalImg.src = imgSrc;
-      modalTitle.textContent = 'Ficha Técnica — ' + productName;
-      modal.classList.add('active');
+    function openTechSheet(key) {
+      const data = fichasTecnicas[key];
+      if (!data) return;
+
+      document.getElementById('specTitle').textContent = data.title;
+      document.getElementById('specSub').textContent = data.sub;
+      document.getElementById('specDesc').textContent = data.desc;
+
+      const badgesContainer = document.getElementById('specBadges');
+      badgesContainer.innerHTML = data.badges.map(b => `<span class="spec-pill">${b}</span>`).join('');
+
+      const tbody = document.getElementById('specTableBody');
+      tbody.innerHTML = data.specs.map(row => `
+        <tr>
+          <td class="spec-key">${row[0]}</td>
+          <td class="spec-val">${row[1]}</td>
+        </tr>
+      `).join('');
+
+      const waUrl = `https://wa.me/5210000000000?text=${encodeURIComponent('Hola, me interesa cotizar el producto ' + data.title)}`;
+      document.getElementById('specWaBtn').href = waUrl;
+
+      document.getElementById('specModal').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
-    function closeFicha(e) {
-      const modal = document.getElementById('fichaModal');
-      modal.classList.remove('active');
+    function closeTechSheet() {
+      document.getElementById('specModal').classList.remove('active');
       document.body.style.overflow = '';
     }
 
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeFicha();
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeTechSheet();
     });
+
+    // Transición suave al hacer scroll entre secciones
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal-section').forEach(sec => observer.observe(sec));
   </script>
 
 </body>
